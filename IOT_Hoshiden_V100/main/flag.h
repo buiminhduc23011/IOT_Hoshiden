@@ -49,7 +49,6 @@ enum FLAG_t
     FLAG_SIO_EVENT_UPDATE_COUNT                     = 0x0004,
     FLAG_SIO_EVENT_CONFIG                           = 0x0008,
     FLAG_SIO_CALLBACK_UPDATE_COUNT                  = 0x0010
-
 };
 /*==================================================================================================
 *                                STRUCTURES AND OTHER TYPEDEFS

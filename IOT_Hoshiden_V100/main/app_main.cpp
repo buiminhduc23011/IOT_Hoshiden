@@ -182,6 +182,53 @@ void SetConfig()
     envs.writeUint16(NVS_KEY_PORT_SERVER, ConvertToU16(buff_uart[4]));
     envs.writeString(NVS_KEY_HOST_NAME, buff_uart[5]);
 }
+void Status_Tower(int _E, int _W)
+{
+    if (_E == 0 &&_W == 0)
+    {
+        gpio_set_level(RED, LOW);
+        gpio_set_level(YEL, LOW);
+        gpio_set_level(GRE, HIGH);
+        gpio_set_level(BUZZ, LOW);
+    }
+    else
+    {
+        gpio_set_level(GRE, LOW);
+        switch (_E)
+        {
+        case 1:
+            gpio_set_level(RED, HIGH);
+            gpio_set_level(YEL, LOW);
+            gpio_set_level(BUZZ, LOW);
+            break;
+        case 2:
+            gpio_set_level(YEL, HIGH);
+            gpio_set_level(RED, LOW);
+            gpio_set_level(BUZZ, HIGH);
+            break;
+        default:
+            gpio_set_level(RED, LOW);
+            gpio_set_level(YEL, LOW);
+            gpio_set_level(BUZZ, LOW);
+            break;
+        }
+
+        switch (_W)
+        {
+        case 1:
+            gpio_set_level(RED, HIGH);
+            break;
+        case 2:
+            gpio_set_level(YEL, HIGH);
+            break;
+        default:
+            gpio_set_level(RED, LOW);
+            gpio_set_level(YEL, LOW);
+            gpio_set_level(BUZZ, LOW);
+            break;
+        }
+    }
+}
 
 //---------------------------------------------------------------------------------
 extern "C" void app_main()
@@ -189,34 +236,41 @@ extern "C" void app_main()
     //----------------------------------------------------------------------------------
     esp_chip_info_t chip_info;
     uint8_t MacBase[6];
-    uint8_t Flag_Run_Old = 0, Flag_Count_Old = 0;
-    uint16_t Time_Flag_Run_Old = 0;
     esp_chip_info(&chip_info);
     ESP_LOGI(TAG, "Initialising WiFi Connection...");
     ESP_ERROR_CHECK(nvs_flash_init());
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     FLAG_Init();
-    gpio_pad_select_gpio(INPUT_DO);
-    gpio_pad_select_gpio(INPUT_VANG);
-    gpio_pad_select_gpio(INPUT_XANH);
-    gpio_pad_select_gpio(INPUT_COUNT);
-    gpio_set_direction(INPUT_DO, GPIO_MODE_INPUT);
-    gpio_set_direction(INPUT_VANG, GPIO_MODE_INPUT);
-    gpio_set_direction(INPUT_XANH, GPIO_MODE_INPUT);
-    gpio_set_direction(INPUT_COUNT, GPIO_MODE_INPUT);
+    gpio_pad_select_gpio(SS_DETECT);
+    gpio_pad_select_gpio(INPUT_SPARE_1);
+    gpio_pad_select_gpio(INPUT_SPARE_2);
+    gpio_pad_select_gpio(INPUT_SPARE_3);
+    gpio_set_direction(SS_DETECT, GPIO_MODE_INPUT);
+    gpio_set_direction(INPUT_SPARE_1, GPIO_MODE_INPUT);
+    gpio_set_direction(INPUT_SPARE_2, GPIO_MODE_INPUT);
+    gpio_set_direction(INPUT_SPARE_3, GPIO_MODE_INPUT);
 
-    gpio_pad_select_gpio(OUTPUT1);
-    gpio_pad_select_gpio(OUTPUT2);
-    gpio_pad_select_gpio(OUTPUT3);
-    gpio_pad_select_gpio(OUTPUT4);
-    gpio_set_direction(OUTPUT1, GPIO_MODE_OUTPUT);
-    gpio_set_direction(OUTPUT2, GPIO_MODE_OUTPUT);
-    gpio_set_direction(OUTPUT3, GPIO_MODE_OUTPUT);
-    gpio_set_direction(OUTPUT4, GPIO_MODE_OUTPUT);
-    gpio_set_level(OUTPUT2, 1);
-    gpio_set_level(OUTPUT3, 1);
-    gpio_set_level(OUTPUT4, 1);
+    gpio_pad_select_gpio(XL01);
+    gpio_pad_select_gpio(RED);
+    gpio_pad_select_gpio(YEL);
+    gpio_pad_select_gpio(GRE);
+    gpio_pad_select_gpio(BUZZ);
+    gpio_pad_select_gpio(TRIGGER_CAMERA);
+
+    gpio_set_direction(XL01, GPIO_MODE_OUTPUT);
+    gpio_set_direction(RED, GPIO_MODE_OUTPUT);
+    gpio_set_direction(YEL, GPIO_MODE_OUTPUT);
+    gpio_set_direction(GRE, GPIO_MODE_OUTPUT);
+    gpio_set_direction(BUZZ, GPIO_MODE_OUTPUT);
+    gpio_set_direction(TRIGGER_CAMERA, GPIO_MODE_OUTPUT);
+
+    gpio_set_level(XL01, LOW);
+    gpio_set_level(RED, LOW);
+    gpio_set_level(YEL, LOW);
+    gpio_set_level(GRE, LOW);
+    gpio_set_level(BUZZ, LOW);
+    gpio_set_level(TRIGGER_CAMERA, LOW);
 
     envs.begin(200);
     ReadConfig(&iot_Data);
@@ -277,16 +331,10 @@ extern "C" void app_main()
         }
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
-    sioapi.begin(&iot_Data, gpio_get_level(INPUT_DO) ? true : false);
+    // sioapi.begin(&iot_Data, gpio_get_level(INPUT_DO) ? true : false);
     sioapi.initCbFunc();
     sioapi.start();
     vTaskDelay(2000 / portTICK_PERIOD_MS);
-    // while(true)
-    // {
-    //     ESP_LOGI(TAG,"Send Event");
-    //     sioapi.SendEventMachineCount(7);
-    //     vTaskDelay(5000/portTICK_PERIOD_MS);
-    // }
     while (true)
     {
         if (FLAG_GetFlag(FLAG_UART_EVENT_REV_DATA))
@@ -304,6 +352,7 @@ extern "C" void app_main()
                 ESP_LOGI("GET_CONFIG", "PASS : (%s)", iot_Data.Pass);
                 ESP_LOGI("GET_CONFIG", "IP SV: (%s)", iot_Data.IpSev);
                 ESP_LOGI("GET_CONFIG", "PORT : (%d)", iot_Data.port);
+                ESP_LOGI("GET_CONFIG", "HOSTNAME : (%s)", iot_Data.HostName);
             }
         }
         if (FLAG_GetFlag(FLAG_SIO_EVENT_CONFIG))
@@ -317,39 +366,16 @@ extern "C" void app_main()
             vTaskDelay(1000 / portTICK_PERIOD_MS);
             esp_restart();
         }
-        if (Flag_Run_Old != gpio_get_level(INPUT_DO))
+        // Trigger Camera
+        gpio_set_level(TRIGGER_CAMERA, gpio_get_level(SS_DETECT));
+        // if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_COUNT))
+        // {
+        //     FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_COUNT);
+        //     sioapi.SendEventMachineCount(Machine_Count);
+        // }
+        if (iot_Data.ServerStatus == true)
         {
-            Time_Flag_Run_Old++;
-            if (Time_Flag_Run_Old >= 50)
-            {
-                Flag_Run_Old = gpio_get_level(INPUT_DO);
-                sioapi.SendEventMachineStatus(Flag_Run_Old ? true : false);
-                Time_Flag_Run_Old = 0;
-            }
-        }
-        else
-        {
-            Time_Flag_Run_Old = 0;
-        }
-        if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_COUNT))
-        {
-            FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_COUNT);
-            sioapi.SendEventMachineCount(Machine_Count);
-        }
-
-        if (Flag_Count_Old != gpio_get_level(INPUT_VANG))
-        {
-            Flag_Count_Old = gpio_get_level(INPUT_VANG);
-            if (Flag_Count_Old)
-            {
-                Machine_Count++;
-                ESP_LOGI(TAG, "Machine Count : %d", Machine_Count);
-            }
-        }
-        if (iot_Data.ServerStatus == false)
-        {
-            ESP_LOGI(TAG, "Server disconnect");
-            vTaskDelay(100 / portTICK_PERIOD_MS);
+            gpio_set_level(RED, HIGH);
         }
         if (FLAG_GetFlag(FLAG_SIO_CALLBACK_UPDATE_COUNT))
         {
