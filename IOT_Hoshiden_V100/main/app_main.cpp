@@ -27,6 +27,7 @@
 #include "flag.h"
 #include "main.h"
 #include "eeprom.h"
+#include "IO.h"
 
 static const char *TAG = "MAIN";
 
@@ -147,11 +148,11 @@ void ReadConfig(IOT_Data_t *_iotConfig)
     _iotConfig->IpSev = (char *)malloc(50 * sizeof(char));
     if (envs.readString(NVS_KEY_IP_SERVER, _iotConfig->IpSev) == 0)
     {
-        _iotConfig->IpSev = "192.168.1.61";
+        _iotConfig->IpSev = "192.168.1.19";
     }
     if (envs.readUint16(NVS_KEY_PORT_SERVER, &_iotConfig->port) == 0)
     {
-        _iotConfig->port = 8686;
+        _iotConfig->port = 3000;
     }
     _iotConfig->HostName = (char *)malloc(50 * sizeof(char));
     if (envs.readString(NVS_KEY_HOST_NAME, _iotConfig->HostName) == 0)
@@ -182,54 +183,6 @@ void SetConfig()
     envs.writeUint16(NVS_KEY_PORT_SERVER, ConvertToU16(buff_uart[4]));
     envs.writeString(NVS_KEY_HOST_NAME, buff_uart[5]);
 }
-void Status_Tower(int _E, int _W)
-{
-    if (_E == 0 &&_W == 0)
-    {
-        gpio_set_level(RED, LOW);
-        gpio_set_level(YEL, LOW);
-        gpio_set_level(GRE, HIGH);
-        gpio_set_level(BUZZ, LOW);
-    }
-    else
-    {
-        gpio_set_level(GRE, LOW);
-        switch (_E)
-        {
-        case 1:
-            gpio_set_level(RED, HIGH);
-            gpio_set_level(YEL, LOW);
-            gpio_set_level(BUZZ, LOW);
-            break;
-        case 2:
-            gpio_set_level(YEL, HIGH);
-            gpio_set_level(RED, LOW);
-            gpio_set_level(BUZZ, HIGH);
-            break;
-        default:
-            gpio_set_level(RED, LOW);
-            gpio_set_level(YEL, LOW);
-            gpio_set_level(BUZZ, LOW);
-            break;
-        }
-
-        switch (_W)
-        {
-        case 1:
-            gpio_set_level(RED, HIGH);
-            break;
-        case 2:
-            gpio_set_level(YEL, HIGH);
-            break;
-        default:
-            gpio_set_level(RED, LOW);
-            gpio_set_level(YEL, LOW);
-            gpio_set_level(BUZZ, LOW);
-            break;
-        }
-    }
-}
-
 //---------------------------------------------------------------------------------
 extern "C" void app_main()
 {
@@ -242,36 +195,7 @@ extern "C" void app_main()
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     FLAG_Init();
-    gpio_pad_select_gpio(SS_DETECT);
-    gpio_pad_select_gpio(INPUT_SPARE_1);
-    gpio_pad_select_gpio(INPUT_SPARE_2);
-    gpio_pad_select_gpio(INPUT_SPARE_3);
-    gpio_set_direction(SS_DETECT, GPIO_MODE_INPUT);
-    gpio_set_direction(INPUT_SPARE_1, GPIO_MODE_INPUT);
-    gpio_set_direction(INPUT_SPARE_2, GPIO_MODE_INPUT);
-    gpio_set_direction(INPUT_SPARE_3, GPIO_MODE_INPUT);
-
-    gpio_pad_select_gpio(XL01);
-    gpio_pad_select_gpio(RED);
-    gpio_pad_select_gpio(YEL);
-    gpio_pad_select_gpio(GRE);
-    gpio_pad_select_gpio(BUZZ);
-    gpio_pad_select_gpio(TRIGGER_CAMERA);
-
-    gpio_set_direction(XL01, GPIO_MODE_OUTPUT);
-    gpio_set_direction(RED, GPIO_MODE_OUTPUT);
-    gpio_set_direction(YEL, GPIO_MODE_OUTPUT);
-    gpio_set_direction(GRE, GPIO_MODE_OUTPUT);
-    gpio_set_direction(BUZZ, GPIO_MODE_OUTPUT);
-    gpio_set_direction(TRIGGER_CAMERA, GPIO_MODE_OUTPUT);
-
-    gpio_set_level(XL01, LOW);
-    gpio_set_level(RED, LOW);
-    gpio_set_level(YEL, LOW);
-    gpio_set_level(GRE, LOW);
-    gpio_set_level(BUZZ, LOW);
-    gpio_set_level(TRIGGER_CAMERA, LOW);
-
+    IO_Init();
     envs.begin(200);
     ReadConfig(&iot_Data);
     uart_config_t uart_config = {
@@ -296,7 +220,7 @@ extern "C" void app_main()
     iot_Data.ServerStatus = false;
     iot_Data.Mac = (char *)malloc(20 * sizeof(char));
     iot_Data.FimwareVer = (char *)malloc(50 * sizeof(char));
-    sprintf(iot_Data.FimwareVer, "IOT_GUNZE_V102 %s %s", __DATE__, __TIME__);
+    sprintf(iot_Data.FimwareVer, "IOT_HOSHIDEN_V100 %s %s", __DATE__, __TIME__);
     //
     esp_err_t err = esp_read_mac(MacBase, ESP_MAC_WIFI_STA);
     if (err != ESP_OK)
@@ -331,7 +255,7 @@ extern "C" void app_main()
         }
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
-    // sioapi.begin(&iot_Data, gpio_get_level(INPUT_DO) ? true : false);
+    sioapi.begin(&iot_Data);
     sioapi.initCbFunc();
     sioapi.start();
     vTaskDelay(2000 / portTICK_PERIOD_MS);
@@ -366,23 +290,20 @@ extern "C" void app_main()
             vTaskDelay(1000 / portTICK_PERIOD_MS);
             esp_restart();
         }
-        // Trigger Camera
-        gpio_set_level(TRIGGER_CAMERA, gpio_get_level(SS_DETECT));
-        // if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_COUNT))
-        // {
-        //     FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_COUNT);
-        //     sioapi.SendEventMachineCount(Machine_Count);
-        // }
+        // Stauts
+        if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_STATUS))
+        {
+            sioapi.IsReceivedStatus(true);
+            FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_STATUS);
+        }
         if (iot_Data.ServerStatus == true)
         {
-            gpio_set_level(RED, HIGH);
+            SetWarring(0);
         }
-        if (FLAG_GetFlag(FLAG_SIO_CALLBACK_UPDATE_COUNT))
+        else
         {
-            ESP_LOGI(TAG, "Sever Call Back Event Update Count");
-            FLAG_ClearFlag(FLAG_SIO_CALLBACK_UPDATE_COUNT);
-            Machine_Count = 0;
+            SetWarring(5);
         }
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }

@@ -1,14 +1,14 @@
 {
     "version":            "1",
-    "project_name":       "IOT_GUNZE_V100",
+    "project_name":       "IOT_HOSHIDEN_V100",
     "project_version":    "1.0.0",
     "project_path":       "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v4.4.8",
     "build_dir":          "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build",
     "config_file":        "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/sdkconfig",
     "config_defaults":    "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/sdkconfig.defaults",
-    "app_elf":            "IOT_GUNZE_V100.elf",
-    "app_bin":            "IOT_GUNZE_V100.bin",
+    "app_elf":            "IOT_HOSHIDEN_V100.elf",
+    "app_bin":            "IOT_HOSHIDEN_V100.bin",
     "git_revision":       "v4.4.8-dirty",
     "target":             "esp32",
     "rev":                "0",
@@ -391,15 +391,15 @@
             "target": "___idf_esp_https_server",
             "prefix": "idf",
             "dir": "C:/Espressif/frameworks/esp-idf-v4.4.8/components/esp_https_server",
-            "type": "CONFIG_ONLY",
+            "type": "LIBRARY",
             "lib": "__idf_esp_https_server",
             "reqs": [ "esp_http_server", "esp-tls" ],
             "priv_reqs": [ "lwip" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "",
-            "sources": [],
-            "include_dirs": []
+            "file": "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/esp_https_server/libesp_https_server.a",
+            "sources": [ "C:/Espressif/frameworks/esp-idf-v4.4.8/components/esp_https_server/src/https_server.c" ],
+            "include_dirs": [ "include" ]
         },
         "esp_hw_support": {
             "alias": "idf::esp_hw_support",
@@ -458,7 +458,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/esp_local_ctrl/libesp_local_ctrl.a",
-            "sources": [ "C:/Espressif/frameworks/esp-idf-v4.4.8/components/esp_local_ctrl/src/esp_local_ctrl.c", "C:/Espressif/frameworks/esp-idf-v4.4.8/components/esp_local_ctrl/src/esp_local_ctrl_handler.c", "C:/Espressif/frameworks/esp-idf-v4.4.8/components/esp_local_ctrl/proto-c/esp_local_ctrl.pb-c.c" ],
+            "sources": [ "C:/Espressif/frameworks/esp-idf-v4.4.8/components/esp_local_ctrl/src/esp_local_ctrl.c", "C:/Espressif/frameworks/esp-idf-v4.4.8/components/esp_local_ctrl/src/esp_local_ctrl_handler.c", "C:/Espressif/frameworks/esp-idf-v4.4.8/components/esp_local_ctrl/proto-c/esp_local_ctrl.pb-c.c", "C:/Espressif/frameworks/esp-idf-v4.4.8/components/esp_local_ctrl/src/esp_local_ctrl_transport_httpd.c" ],
             "include_dirs": [ "include" ]
         },
         "esp_netif": {
@@ -848,7 +848,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/main/flag.c", "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/main/socketioclient_api.cpp", "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/main/ota.c", "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/main/app_main.cpp" ],
+            "sources": [ "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/main/flag.c", "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/main/socketioclient_api.cpp", "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/main/ota.c", "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/main/IO.c", "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/main/app_main.cpp" ],
             "include_dirs": [ ".", "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/main" ]
         },
         "mbedtls": {

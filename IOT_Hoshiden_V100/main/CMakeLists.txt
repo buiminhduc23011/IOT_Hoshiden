@@ -2,6 +2,7 @@ set(COMPONENT_SRCS
 	"flag.c"
 	"socketioclient_api.cpp"
 	"ota.c"
+	"IO.c"
 	"app_main.cpp"
 	)
 

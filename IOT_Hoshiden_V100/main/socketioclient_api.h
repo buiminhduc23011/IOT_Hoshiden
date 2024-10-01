@@ -92,13 +92,14 @@ class SocketIoClientAPI {
         /*!
         * \brief Ham bat dau
         */
-        void begin(IOT_Data_t *_iot_Data, bool machine_status)
+        void begin(IOT_Data_t *_iot_Data)
         {
             iot_Data = _iot_Data;
             EncodeUrl(_iot_Data->IpSev, _iot_Data->port);
             char Mac[100];
+            sprintf(Mac,"Mac: %s\r\nIp: %s\r\nFirmware: %s\r\nis-running: true",_iot_Data->Mac,_iot_Data->Ip,_iot_Data->FimwareVer);
             // if(machine_status)sprintf(Mac,"Mac: %s\r\nIp: %s\r\nFirmware: %s\r\nis-running: true",_iot_Data->Mac,_iot_Data->Ip,_iot_Data->FimwareVer);
-            // else sprintf(Mac,"Mac: %s\r\nIp: %s\r\nFirmware: %s\r\nis-running: false",_iot_Data->Mac,_iot_Data->Ip,_iot_Data->FimwareVer);
+            //else sprintf(Mac,"Mac: %s\r\nIp: %s\r\nFirmware: %s\r\nis-running: false",_iot_Data->Mac,_iot_Data->Ip,_iot_Data->FimwareVer);
             sio = new SocketIoClient(sv_url,Mac);
             FlagSio = false;
         }
@@ -106,7 +107,7 @@ class SocketIoClientAPI {
         * \brief Ham gui su kien connect IOT
         */
        void SendEventMachineStatus(bool status);
-       void SendEventMachineCount(uint32_t _count);
+       void IsReceivedStatus(bool _isReceived);
 };
 #endif /*<!__SOCKETIOCLIENT_API_H>*/
 //------------------------------------------END FILE----------------------------------------------//

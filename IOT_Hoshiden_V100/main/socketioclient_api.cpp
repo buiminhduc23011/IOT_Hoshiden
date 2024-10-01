@@ -21,6 +21,7 @@ Modification
 #include <string.h>
 #include "cJSON.h"
 #include "ota.h"
+#include "IO.h"
 #include "flag.h"
 /*==================================================================================================
 *                                     FILE VERSION CHECKS
@@ -79,8 +80,8 @@ void SocketIoClientAPI::initCbFunc()
             iot_Data->ServerStatus = false;
         } });
 
-    sio->seertEventFuncCallBack([](SocketIoClient *ws, uint32_t id)
-                                { FLAG_SetFlag(FLAG_SIO_CALLBACK_UPDATE_COUNT); });
+    // sio->seertEventFuncCallBack([](SocketIoClient *ws, uint32_t id)
+    //                             { FLAG_SetFlag(FLAG_SIO_CALLBACK_UPDATE_COUNT); });
 
     sio->setCB([](SocketIoClient *c, const char *msg, int len, int type)
                {
@@ -100,10 +101,27 @@ void SocketIoClientAPI::initCbFunc()
         cJSON_Delete(data_receive);
         FLAG_SetFlag(FLAG_SIO_EVENT_UPDATE_FIMWARE); });
 
-    sio->on("update-count", [](SocketIoClient *c, char *msg)
+    sio->on("error-pcb", [](SocketIoClient *c, char *msg)
+            {    
+                api_sio_info("Event Receive: error-pcb");
+                cJSON *data_receive = cJSON_Parse(msg);
+                if (cJSON_GetObjectItem(data_receive, "errorCode"))
+                {
+                    uint16_t _errorcode = cJSON_GetObjectItem(data_receive, "errorCode")->valueint;
+                    SetError(_errorcode);
+                } });
+    sio->on("success-pcb", [](SocketIoClient *c, char *msg)
             {
-        api_sio_info("Event Receive: update-count");
-        FLAG_SetFlag(FLAG_SIO_EVENT_UPDATE_COUNT); });
+                api_sio_info("Event Receive: success-pcb");
+                cJSON *data_receive = cJSON_Parse(msg);
+                if (cJSON_GetObjectItem(data_receive, "status"))
+                {
+                    bool status = cJSON_GetObjectItem(data_receive, "status")->valueint;
+                    if(status)
+                    {
+                         FLAG_SetFlag(FLAG_SIO_EVENT_UPDATE_STATUS_PCB);
+                    }
+                } });
 
     sio->on("config-iot", [](SocketIoClient *c, char *msg)
             {
@@ -184,13 +202,13 @@ void SocketIoClientAPI::SendEventMachineStatus(bool status)
 }
 
 //---------------------------------------------------------------------------------------------------
-void SocketIoClientAPI::SendEventMachineCount(uint32_t _count)
+void SocketIoClientAPI::IsReceivedStatus(bool _isReceived)
 {
-    cJSON *machine_count = cJSON_CreateObject();
-    cJSON_AddNumberToObject(machine_count, "count", _count);
-    char *data_machine = cJSON_Print(machine_count);
-    SIOClientSendEvent("update-count", data_machine, 1);
-    cJSON_Delete(machine_count);
-    cJSON_free(data_machine);
+    cJSON *isReceived = cJSON_CreateObject();
+    cJSON_AddBoolToObject(isReceived, "isReceived", _isReceived);
+    char *data_send = cJSON_Print(isReceived);
+    SIOClientSendEvent("update-status", data_send);
+    cJSON_Delete(isReceived);
+    cJSON_free(data_send);
 }
 //======================================END FILE===================================================/

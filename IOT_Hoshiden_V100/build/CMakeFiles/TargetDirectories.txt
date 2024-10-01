@@ -8,7 +8,7 @@ C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/CMakeFiles/
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/CMakeFiles/flash.dir
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/CMakeFiles/encrypted-flash.dir
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/CMakeFiles/_project_elf_src.dir
-C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/CMakeFiles/IOT_GUNZE_V100.elf.dir
+C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/CMakeFiles/IOT_HOSHIDEN_V100.elf.dir
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/CMakeFiles/size.dir
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/CMakeFiles/size-files.dir
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/CMakeFiles/size-components.dir
@@ -517,6 +517,7 @@ C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/esp
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/esp_https_ota/CMakeFiles/install.dir
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/esp_https_ota/CMakeFiles/install/local.dir
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/esp_https_ota/CMakeFiles/install/strip.dir
+C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/esp_https_server/CMakeFiles/__idf_esp_https_server.dir
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/esp_https_server/CMakeFiles/edit_cache.dir
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/esp_https_server/CMakeFiles/rebuild_cache.dir
 C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden_V100/build/esp-idf/esp_https_server/CMakeFiles/list_install_components.dir
