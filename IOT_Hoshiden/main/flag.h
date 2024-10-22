@@ -48,7 +48,10 @@ extern "C"
         FLAG_UART_EVENT_REV_DATA = 0x0002,
         FLAG_SIO_EVENT_UPDATE_STATUS_PCB = 0x0004,
         FLAG_SIO_EVENT_CONFIG = 0x0008,
-        FLAG_SIO_EVENT_UPDATE_STATUS = 0x0010
+        FLAG_SIO_EVENT_UPDATE_STATUS = 0x0010,
+        FLAG_SIO_EVENT_UPDATE_PCB = 0x0020,
+        FLAG_SIO_EVENT_UPDATE_ERROR_PCB = 0x0040,
+        FLAG_SIO_EVENT_RETRY_CONNECTCAMERA = 0x0100
     };
     /*==================================================================================================
     *                                STRUCTURES AND OTHER TYPEDEFS

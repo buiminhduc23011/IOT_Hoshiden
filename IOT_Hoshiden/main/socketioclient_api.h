@@ -108,6 +108,7 @@ class SocketIoClientAPI {
         */
        void SendEventMachineStatus(bool status);
        void IsReceivedStatus(bool _isReceived);
+       void SendPCB(const char *QR);
 };
 #endif /*<!__SOCKETIOCLIENT_API_H>*/
 //------------------------------------------END FILE----------------------------------------------//

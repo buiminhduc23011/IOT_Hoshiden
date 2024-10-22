@@ -1,4 +1,9 @@
 set(COMPONENT_SRCS
+	"Application/loopback/loopback.c"
+	"W5500/w5500.c"
+	"wizchip_conf.c"
+	"TCP.c"
+	"socket.c"
 	"flag.c"
 	"socketioclient_api.cpp"
 	"ota.c"

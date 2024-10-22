@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/IOT_HOSHIDEN_20241010_180624")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/IOT_HOSHIDEN_20241022_104603")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/Ducne/Desktop/IOT_Hoshiden_V100/build/esp-idf/esp_system/port/cmake_install.cmake")
+  include("C:/Users/Ducne/Desktop/IOT_Hoshiden/build/esp-idf/esp_system/port/cmake_install.cmake")
 
 endif()
 

@@ -5,15 +5,15 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "C:/Espressif/frameworks/esp-idf-v4.4.8/components/bootloader/subproject"
-  "C:/Users/Ducne/Desktop/IOT_Hoshiden_V100/build/bootloader"
-  "C:/Users/Ducne/Desktop/IOT_Hoshiden_V100/build/bootloader-prefix"
-  "C:/Users/Ducne/Desktop/IOT_Hoshiden_V100/build/bootloader-prefix/tmp"
-  "C:/Users/Ducne/Desktop/IOT_Hoshiden_V100/build/bootloader-prefix/src/bootloader-stamp"
-  "C:/Users/Ducne/Desktop/IOT_Hoshiden_V100/build/bootloader-prefix/src"
-  "C:/Users/Ducne/Desktop/IOT_Hoshiden_V100/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/Ducne/Desktop/IOT_Hoshiden/build/bootloader"
+  "C:/Users/Ducne/Desktop/IOT_Hoshiden/build/bootloader-prefix"
+  "C:/Users/Ducne/Desktop/IOT_Hoshiden/build/bootloader-prefix/tmp"
+  "C:/Users/Ducne/Desktop/IOT_Hoshiden/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/Ducne/Desktop/IOT_Hoshiden/build/bootloader-prefix/src"
+  "C:/Users/Ducne/Desktop/IOT_Hoshiden/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Users/Ducne/Desktop/IOT_Hoshiden_V100/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Users/Ducne/Desktop/IOT_Hoshiden/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()

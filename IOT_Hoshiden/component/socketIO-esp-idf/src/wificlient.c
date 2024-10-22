@@ -1,13 +1,13 @@
 /*==================================================================================================
 *   Project              :  IOT NIDEC
-*   Doccument            :  framework ESS32-IDF 
+*   Doccument            :  framework ESS32-IDF
 *   FileName             :  wificlient.cpp
 *   File Description     :  Dinh nghia ham su dung wifi trong esp32
 *
 ==================================================================================================*/
 /*==================================================================================================
 Revision History:
-Modification     
+Modification
     Author                  	Date D/M/Y     Description of Changes
 ----------------------------	----------     ------------------------------------------
     Do Xuan An              	08/03/2024     Tao file
@@ -47,11 +47,11 @@ Modification
 *                                      LOCAL VARIABLES
 ==================================================================================================*/
 static char TAG[] = "WifiClient";
-const char* cptr_ssid = NULL;
-const char* cptr_pass = NULL;
-const char* cptr_host = NULL;
-char* ptr_Ip = NULL;
-char* ptr_Mac = NULL;
+const char *cptr_ssid = NULL;
+const char *cptr_pass = NULL;
+const char *cptr_host = NULL;
+char *ptr_Ip = NULL;
+char *ptr_Mac = NULL;
 Func_WifiConnected f_ccb;
 static esp_netif_t *s_esp_netif = NULL;
 /*==================================================================================================
@@ -72,27 +72,28 @@ static esp_netif_t *s_esp_netif = NULL;
 *                                      GLOBAL FUNCTIONS
 ==================================================================================================*/
 
-
 static bool is_our_netif(const char *prefix, esp_netif_t *netif)
 {
     return strncmp(prefix, esp_netif_get_desc(netif), strlen(prefix) - 1) == 0;
 }
 
-static void on_wifi_disconnect(void *arg, esp_event_base_t event_base,int32_t event_id, void *event_data)
+static void on_wifi_disconnect(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     ESP_LOGI(TAG, "Wi-Fi disconnected, trying to reconnect...");
     esp_err_t err = esp_wifi_connect();
-    if (err == ESP_ERR_WIFI_NOT_STARTED) {
+    if (err == ESP_ERR_WIFI_NOT_STARTED)
+    {
         return;
     }
     ESP_ERROR_CHECK(err);
     f_ccb(false);
 }
 
-static void on_got_ip(void *arg, esp_event_base_t event_base,int32_t event_id, void *event_data)
+static void on_got_ip(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
-    if (!is_our_netif(TAG, event->esp_netif)) {
+    if (!is_our_netif(TAG, event->esp_netif))
+    {
         ESP_LOGW(TAG, "Got IPv4 from another interface \"%s\": ignored", esp_netif_get_desc(event->esp_netif));
         return;
     }
@@ -106,8 +107,10 @@ esp_netif_t *get_example_netif_from_desc(const char *desc)
     esp_netif_t *netif = NULL;
     char *expected_desc;
     asprintf(&expected_desc, "%s: %s", TAG, desc);
-    while ((netif = esp_netif_next(netif)) != NULL) {
-        if (strcmp(esp_netif_get_desc(netif), expected_desc) == 0) {
+    while ((netif = esp_netif_next(netif)) != NULL)
+    {
+        if (strcmp(esp_netif_get_desc(netif), expected_desc) == 0)
+        {
             free(expected_desc);
             return netif;
         }
@@ -155,7 +158,8 @@ static void wifi_stop(void)
     ESP_ERROR_CHECK(esp_event_handler_unregister(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &on_wifi_disconnect));
     ESP_ERROR_CHECK(esp_event_handler_unregister(IP_EVENT, IP_EVENT_STA_GOT_IP, &on_got_ip));
     esp_err_t err = esp_wifi_stop();
-    if (err == ESP_ERR_WIFI_NOT_INIT) {
+    if (err == ESP_ERR_WIFI_NOT_INIT)
+    {
         return;
     }
     ESP_ERROR_CHECK(err);
@@ -172,14 +176,14 @@ static void stop(void)
 /*!
  * \brief Ket noi voi wifi
  */
-void Wifi_Connect(const char* ssid, const char* pass, const char* host)
+void Wifi_Connect(const char *ssid, const char *pass, const char *host)
 {
     uint8_t MacBase[6];
     cptr_ssid = strdup(ssid);
     cptr_pass = strdup(pass);
     cptr_host = strdup(host);
-    ptr_Ip = (char*)malloc(20*sizeof(char));
-    ptr_Mac = (char*)malloc(18*sizeof(char));
+    ptr_Ip = (char *)malloc(20 * sizeof(char));
+    ptr_Mac = (char *)malloc(18 * sizeof(char));
     if (ssid)
     {
         strncpy(cptr_ssid, ssid, strlen(ssid));
@@ -189,7 +193,7 @@ void Wifi_Connect(const char* ssid, const char* pass, const char* host)
         strncpy(cptr_pass, pass, strlen(pass));
     }
     s_esp_netif = wifi_start();
-    ESP_ERROR_CHECK(esp_netif_set_hostname(s_esp_netif,cptr_host));
+    ESP_ERROR_CHECK(esp_netif_set_hostname(s_esp_netif, cptr_host));
     ESP_ERROR_CHECK(esp_register_shutdown_handler(&stop));
     esp_err_t err = esp_read_mac(MacBase, ESP_MAC_WIFI_STA);
     if (err != ESP_OK)
@@ -198,7 +202,7 @@ void Wifi_Connect(const char* ssid, const char* pass, const char* host)
     }
     else
     {
-        snprintf(ptr_Mac,18, "%02X:%02X:%02X:%02X:%02X:%02X", MacBase[0], MacBase[1], MacBase[2], MacBase[3], MacBase[4], MacBase[5]);
+        snprintf(ptr_Mac, 18, "%02X:%02X:%02X:%02X:%02X:%02X", MacBase[0], MacBase[1], MacBase[2], MacBase[3], MacBase[4], MacBase[5]);
     }
     ESP_LOGI(TAG, "Wifi Connected");
 }
@@ -208,7 +212,6 @@ void Wifi_Connect(const char* ssid, const char* pass, const char* host)
  */
 void Wifi_Disconnect(void)
 {
-
 }
 
 /*!
@@ -220,17 +223,36 @@ void Wifi_SetConnectCB(Func_WifiConnected ccb)
 }
 
 //---------------------------------------------------------------------------------------------------------------
-void GetIP(char** ipPtr)
+void GetIP(char **ipPtr)
 {
-    if(ptr_Ip) *ipPtr = ptr_Ip;
-    else return;
+    if (ptr_Ip)
+        *ipPtr = ptr_Ip;
+    else
+        return;
 }
 //---------------------------------------------------------------------------------------------------------------
-void GetMac(char** macPtr)
+void GetMac(char **macPtr)
 {
-    if(ptr_Mac) *macPtr = ptr_Mac;
-    else return;
+    if (ptr_Mac)
+        *macPtr = ptr_Mac;
+    else
+        return;
 }
+int16_t GetRssi(void)
+{
+    wifi_ap_record_t ap_info;
+    esp_err_t err = esp_wifi_sta_get_ap_info(&ap_info);
+    if (err == ESP_OK)
+    {
+        return ap_info.rssi;
+    }
+    else
+    {
+        ESP_LOGE(TAG, "Failed to get RSSI. Error: %s", esp_err_to_name(err));
+        return 0;
+    }
+}
+
 //---------------------------------------------------------------------------------------------------------------
 
 //======================================END FILE===================================================/

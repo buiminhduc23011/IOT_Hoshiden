@@ -28,12 +28,13 @@
 #include "main.h"
 #include "eeprom.h"
 #include "IO.h"
+#include "TCP.h"
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
 
 static const char *TAG = "MAIN";
-
+TaskHandle_t MainTaskHandle;
 SocketIoClientAPI sioapi;
 IOT_Data_t iot_Data;
 Eeprom envs;
@@ -234,6 +235,8 @@ extern "C" void app_main()
     {
         snprintf(iot_Data.Mac, 18, "%02X:%02X:%02X:%02X:%02X:%02X", MacBase[0], MacBase[1], MacBase[2], MacBase[3], MacBase[4], MacBase[5]);
     }
+
+    TCP_Init();
     vTaskDelay(100);
     Wifi_SetConnectCB(&WWifi_ConnectedCB);
     Wifi_Connect(iot_Data.Ssid, iot_Data.Pass, iot_Data.HostName);
@@ -261,56 +264,65 @@ extern "C" void app_main()
     sioapi.begin(&iot_Data);
     sioapi.initCbFunc();
     sioapi.start();
+
     vTaskDelay(2000 / portTICK_PERIOD_MS);
-    while (true)
+}
+void main_task(void)
+{
+    // ESP_LOGI("RSSI", "Current RSSI: %d dBm", GetRssi());
+    if (FLAG_GetFlag(FLAG_UART_EVENT_REV_DATA))
     {
-        if (FLAG_GetFlag(FLAG_UART_EVENT_REV_DATA))
+        FLAG_ClearFlag(FLAG_UART_EVENT_REV_DATA);
+        if (strcmp(buff_uart[0], "Config") == 0)
         {
-            FLAG_ClearFlag(FLAG_UART_EVENT_REV_DATA);
-            if (strcmp(buff_uart[0], "Config") == 0)
-            {
-                SetConfig();
-                vTaskDelay(1000 / portTICK_PERIOD_MS);
-                esp_restart();
-            }
-            if (strcmp(buff_uart[0], "get") == 0)
-            {
-                ESP_LOGI("GET_CONFIG", "SSID : (%s)", iot_Data.Ssid);
-                ESP_LOGI("GET_CONFIG", "PASS : (%s)", iot_Data.Pass);
-                ESP_LOGI("GET_CONFIG", "IP SV: (%s)", iot_Data.IpSev);
-                ESP_LOGI("GET_CONFIG", "PORT : (%d)", iot_Data.port);
-                ESP_LOGI("GET_CONFIG", "HOSTNAME : (%s)", iot_Data.HostName);
-            }
-        }
-        if (FLAG_GetFlag(FLAG_SIO_EVENT_CONFIG))
-        {
-            FLAG_ClearFlag(FLAG_SIO_EVENT_CONFIG);
-            envs.writeString(NVS_KEY_WIFI_SSID, iot_Data.Ssid);
-            envs.writeString(NVS_KEY_WIFI_PASS, iot_Data.Pass);
-            envs.writeString(NVS_KEY_IP_SERVER, iot_Data.IpSev);
-            envs.writeUint16(NVS_KEY_PORT_SERVER, iot_Data.port);
-            envs.writeString(NVS_KEY_HOST_NAME, iot_Data.HostName);
+            SetConfig();
             vTaskDelay(1000 / portTICK_PERIOD_MS);
             esp_restart();
         }
-        // Stauts
-        if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_STATUS))
+        if (strcmp(buff_uart[0], "get") == 0)
         {
-            sioapi.IsReceivedStatus(true);
-            FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_STATUS);
+            ESP_LOGI("GET_CONFIG", "SSID : (%s)", iot_Data.Ssid);
+            ESP_LOGI("GET_CONFIG", "PASS : (%s)", iot_Data.Pass);
+            ESP_LOGI("GET_CONFIG", "IP SV: (%s)", iot_Data.IpSev);
+            ESP_LOGI("GET_CONFIG", "PORT : (%d)", iot_Data.port);
+            ESP_LOGI("GET_CONFIG", "HOSTNAME : (%s)", iot_Data.HostName);
         }
-       if (iot_Data.ServerStatus == true && iot_Data.WifiStatus == true)
-        {
-            SetWarring(0);
-        }
-        else if(iot_Data.WifiStatus == false)
-        {
-            SetWarring(10);
-        }
-        else if(iot_Data.ServerStatus == false)
-        {
-            SetWarring(5);
-        }
+    }
+    if (FLAG_GetFlag(FLAG_SIO_EVENT_CONFIG))
+    {
+        FLAG_ClearFlag(FLAG_SIO_EVENT_CONFIG);
+        envs.writeString(NVS_KEY_WIFI_SSID, iot_Data.Ssid);
+        envs.writeString(NVS_KEY_WIFI_PASS, iot_Data.Pass);
+        envs.writeString(NVS_KEY_IP_SERVER, iot_Data.IpSev);
+        envs.writeUint16(NVS_KEY_PORT_SERVER, iot_Data.port);
+        envs.writeString(NVS_KEY_HOST_NAME, iot_Data.HostName);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
+        esp_restart();
+    }
+    if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_PCB))
+    {
+        FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_PCB);
+        sioapi.SendPCB(GetQRcode());
+    }
+    if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB))
+    {
+        FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB);
+        sioapi.SendPCB("disconnect");
+    }
+    if (iot_Data.ServerStatus == true && iot_Data.WifiStatus == true && ConnectCam() == true)
+    {
+        SetWarring(0);
+    }
+    else if (iot_Data.WifiStatus == false)
+    {
+        SetWarring(10);
+    }
+    else if (iot_Data.ServerStatus == false)
+    {
+        SetWarring(5);
+    }
+    else if (ConnectCam() == false)
+    {
+        SetWarring(2);
     }
 }

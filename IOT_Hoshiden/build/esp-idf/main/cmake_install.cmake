@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Ducne/Desktop/IOT_Hoshiden_V100/main
+# Install script for directory: C:/Users/Ducne/Desktop/IOT_Hoshiden/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/IOT_HOSHIDEN_20241010_180624")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/IOT_HOSHIDEN_20241022_104603")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

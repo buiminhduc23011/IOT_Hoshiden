@@ -3,7 +3,7 @@
 #include <Ethernet.h>
 #include <PubSubClient.h>
 
-#define ETH_CS 5
+#define ETH_CS 14
 #define ETH_SCLK 18
 #define ETH_MISO 19
 #define ETH_MOSI 23
@@ -21,7 +21,7 @@
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 
-const char* mqtt_broker = "192.168.1.173";
+const char* mqtt_broker = "192.168.0.173";
 const char* mqtt_topic = "esp32/test";
 const char* mqtt_username = "";
 const char* mqtt_password = "public";

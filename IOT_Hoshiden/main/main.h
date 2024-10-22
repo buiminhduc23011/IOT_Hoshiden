@@ -30,6 +30,8 @@ extern "C"
 #define TCP_SERVER_ADDRESS "192.168.1.58"
 #define TCP_SERVER_PORT 3000
 
+void main_task(void);
+
 #ifdef __cplusplus
 }
 #endif

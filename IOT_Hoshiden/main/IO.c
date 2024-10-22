@@ -28,6 +28,9 @@ Modification
 #include "esp_https_ota.h"
 #include "cJSON.h"
 #include "flag.h"
+#include "main.h"
+#include "TCP.h"
+
 /*==================================================================================================
 *                                     FILE VERSION CHECKS
 ==================================================================================================*/
@@ -56,12 +59,19 @@ uint16_t Time_W = 0;
 uint16_t time_sample = 10;
 uint8_t YEL_PIN = 0;
 uint8_t RED_PIN = 0;
+uint8_t State_Trigger = 0;
 bool OFF_BUZZ = false;
 bool Flicker = false;
 bool OpenXL = false;
 uint16_t Flag_SS_DETECT_ON = 0;
 uint16_t Flag_SS_DETECT_OFF = 0;
+uint16_t T_OFF_Trigger = 0;
+uint16_t TIMEOUT_TRIG = 0;
 uint16_t Flag_Logi = 0;
+uint16_t Time_W_E = 0;
+uint16_t Time_W_W = 0;
+bool CheckCam = false;
+uint16_t TimeoutCamera = 0;
 
 /*==================================================================================================
 *                                      GLOBAL CONSTANTS
@@ -115,7 +125,6 @@ void IO_Init()
     gpio_set_level(TRIGGER_CAMERA, LOW);
     IORun();
 }
-
 void SetError(uint16_t _E, bool _flicker)
 {
     E = _E;
@@ -150,11 +159,14 @@ void E_interval()
                 RED_PIN = !RED_PIN;
                 gpio_set_level(RED, RED_PIN);
                 Time_E = 0;
+                Time_W_E = 0;
             }
             if (Flag_E >= E)
             {
-                vTaskDelay(1000 / portTICK_PERIOD_MS);
                 Flag_E = 0;
+                RED_PIN = 0;
+                gpio_set_level(RED, RED_PIN);
+                vTaskDelay(1000 / portTICK_PERIOD_MS);
             }
         }
         else
@@ -186,11 +198,14 @@ void W_interval()
             YEL_PIN = !YEL_PIN;
             gpio_set_level(YEL, YEL_PIN);
             Time_W = 0;
+            Time_W_W = 0;
         }
         if (Flag_W >= W)
         {
-            vTaskDelay(1000 / portTICK_PERIOD_MS);
             Flag_W = 0;
+            YEL_PIN = 0;
+            gpio_set_level(YEL, YEL_PIN);
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
         }
     }
     else
@@ -205,7 +220,36 @@ void io_task(void *pvParameter)
     while (1)
     {
         // Trigger
-        gpio_set_level(TRIGGER_CAMERA, !gpio_get_level(SS_DETECT));
+        if (!gpio_get_level(SS_DETECT))
+        {
+            State_Trigger = 1;
+            T_OFF_Trigger = 0;
+            if (State_Trigger == 1 && TIMEOUT_TRIG < 1000)
+            {
+                TIMEOUT_TRIG++;
+            }
+            if (TIMEOUT_TRIG > 200)
+            {
+                State_Trigger = 0;
+            }
+            if (TIMEOUT_TRIG < 2)
+            {
+                reset_QRcode();
+            }
+        }
+        else
+        {
+            TIMEOUT_TRIG = 0;
+            if (T_OFF_Trigger < 1000)
+            {
+                T_OFF_Trigger++;
+            }
+            if (T_OFF_Trigger > 200) // Timeout Trigger, 200 là giữ trigger trong 2s kể từ khi mất cảm biến
+            {
+                State_Trigger = 0;
+            }
+        }
+        gpio_set_level(TRIGGER_CAMERA, State_Trigger);
         // Tower
         if (E == 0 && W == 0)
         {
@@ -229,6 +273,7 @@ void io_task(void *pvParameter)
         if (OpenXL)
         {
             gpio_set_level(XL01, LOW); // Mở
+            CheckCam = false;
             if (Flag_SS_DETECT_OFF < 500)
             {
                 if (gpio_get_level(SS_DETECT))
@@ -249,31 +294,66 @@ void io_task(void *pvParameter)
             if (Flag_SS_DETECT_ON > 30)
             {
                 gpio_set_level(XL01, HIGH); // Đóng
+                CheckCam = true;
                 Flag_SS_DETECT_OFF = 0;
             }
         }
-        // Flag_Logi++;
-        // if (Flag_Logi > 100)
-        // {
-        //     if (OpenXL)
-        //     {
-        //         ESP_LOGI(TAG, "OpenXL True ;Flag_SS_DETECT_OFF: %d", Flag_SS_DETECT_OFF);
-        //     }
-        //     else
-        //     {
-        //         ESP_LOGI(TAG, "OpenXL False ;Flag_SS_DETECT_OFF: %d", Flag_SS_DETECT_OFF);
-        //     }
+        // Check Timeout Camera
+        if (CheckCam)
+        {
+            if (TimeoutCamera < 400)
+            {
+                TimeoutCamera++;
+            }
+            if (TimeoutCamera == 300)
+            {
+                char *qr_code = GetQRcode();
+                if (qr_code == NULL)
+                {
+                    ESP_LOGI(TAG, "GetQRcode() returned NULL, triggering error flag");
+                    FLAG_SetFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB);
+                    FLAG_SetFlag(FLAG_SIO_EVENT_RETRY_CONNECTCAMERA);
+                }
+                else
+                {
+                    ESP_LOGI(TAG, "GetQRcode() returned valid data: %s", qr_code);
+                }
+            }
+        }
+        else
+        {
+            TimeoutCamera = 0;
+        }
 
-        //     Flag_Logi = 0;
-        // }
+        Flag_Logi++;
+        if (Flag_Logi > 100)
+        {
+            // if (OpenXL)
+            // {
+            //     ESP_LOGI(TAG, "OpenXL True ;Flag_SS_DETECT_OFF: %d", Flag_SS_DETECT_OFF);
+            // }
+            // else
+            // {
+            //     ESP_LOGI(TAG, "OpenXL False ;Flag_SS_DETECT_OFF: %d", Flag_SS_DETECT_OFF);
+            // }
+            // if (OFF_BUZZ)
+            //     ESP_LOGI(TAG, "OFF Buzz");
+            // else
+            //     ESP_LOGI(TAG, "ON Buzz");
+            // ESP_LOGI(TAG, "E: %d, W: %d", E, W);
+            main_task();
+
+            Flag_Logi = 0;
+        }
         vTaskDelay(time_sample / portTICK_PERIOD_MS);
     }
 }
+
 //---------------------------------------------------------------------------------------------------
 void IORun(void)
 {
     ESP_LOGI(TAG, "Starting");
-    xTaskCreate(&io_task, "IOTask", 4096, NULL, 2, &IOTaskHandle);
+    xTaskCreate(&io_task, "IOTask", 4096, NULL, 5, &IOTaskHandle);
 }
 
 //======================================END FILE===================================================/

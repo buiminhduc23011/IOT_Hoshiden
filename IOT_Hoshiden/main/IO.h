@@ -78,6 +78,7 @@ extern "C"
     void SetBuzz(bool status);
     void SetError(uint16_t _E, bool _flicker);
     void SetWarring(uint16_t _W);
+    void HandleSystemEvents(void);
     void IORun(void);
 #ifdef __cplusplus
 }
