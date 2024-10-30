@@ -22,6 +22,10 @@ extern "C"
 #define NVS_KEY_PORT_SERVER "PORT"
 #define NVS_KEY_HOST_NAME "HOST"
 
+#define NVS_KEY_QRCODE "QrCode"
+#define NVS_KEY_STATE_XL "StateXL"
+#define NVS_KEY_STATE_UPDATE_PCB "StateUpdatePcb"
+
 // Wifi
 #define WIFI_NAME_DEFAULT "STI_VietNam_No8"
 #define WIFI_PASS_DEFAULT "66668888"

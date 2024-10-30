@@ -72,6 +72,7 @@ uint16_t Time_W_E = 0;
 uint16_t Time_W_W = 0;
 bool CheckCam = false;
 uint16_t TimeoutCamera = 0;
+uint16_t State_XL = 0;
 
 /*==================================================================================================
 *                                      GLOBAL CONSTANTS
@@ -137,6 +138,18 @@ void SetWarring(uint16_t _W)
 void SetBuzz(bool status)
 {
     OFF_BUZZ = status;
+}
+int16_t GetError(void)
+{
+    return E;
+}
+uint16_t GetStateXL(void)
+{
+    return State_XL;
+}
+void SetStateXL(uint state)
+{
+    State_XL = state;
 }
 void E_interval()
 {
@@ -249,7 +262,10 @@ void io_task(void *pvParameter)
                 State_Trigger = 0;
             }
         }
-        gpio_set_level(TRIGGER_CAMERA, State_Trigger);
+        if (!FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_PCB))
+        {
+            gpio_set_level(TRIGGER_CAMERA, State_Trigger);
+        }
         // Tower
         if (E == 0 && W == 0)
         {
@@ -272,7 +288,7 @@ void io_task(void *pvParameter)
         }
         if (OpenXL)
         {
-            gpio_set_level(XL01, LOW); // Mở
+            State_XL = 0;
             CheckCam = false;
             if (Flag_SS_DETECT_OFF < 500)
             {
@@ -293,11 +309,15 @@ void io_task(void *pvParameter)
                 Flag_SS_DETECT_ON++;
             if (Flag_SS_DETECT_ON > 30)
             {
-                gpio_set_level(XL01, HIGH); // Đóng
-                CheckCam = true;
+                State_XL = 1; // Đóng
+                if (!FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_PCB))
+                {
+                    CheckCam = true;
+                }
                 Flag_SS_DETECT_OFF = 0;
             }
         }
+        gpio_set_level(XL01, State_XL);
         // Check Timeout Camera
         if (CheckCam)
         {

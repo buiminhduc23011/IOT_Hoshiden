@@ -89,6 +89,10 @@ char *GetQRcode(void)
         return NULL; // Trả về NULL nếu QR_Code chưa có dữ liệu
     }
 }
+void SetQRCode(char *value)
+{
+    QR_Code = strdup(value); // Sao chép chuỗi mới vào QR_Code
+}
 void reset_QRcode(void)
 {
     QR_Code = NULL;
@@ -378,25 +382,6 @@ int32_t loopback_tcps1(uint8_t sn, uint8_t *buf, uint16_t port)
 
     return 1;
 }
-// void send_heartbeat(uint8_t sn)
-// {
-//     const char *heartbeat_msg = "HEARTBEAT"; // Chuỗi heartbeat sẽ được gửi
-//     int32_t ret;
-
-//     // Gửi heartbeat qua socket
-//     ret = send(sn, (uint8_t *)heartbeat_msg, strlen(heartbeat_msg));
-
-//     // Kiểm tra xem có lỗi trong quá trình gửi không
-//     if (ret < 0)
-//     {
-//         ESP_LOGI(TAG, "Failed to send heartbeat, closing socket");
-//         close(sn); // Nếu gửi không thành công, đóng socket
-//     }
-//     else
-//     {
-//         ESP_LOGI(TAG, "Heartbeat sent successfully");
-//     }
-// }
 
 void tcp_task(void *pvParameter)
 {

@@ -54,6 +54,8 @@ char *ptr_Ip = NULL;
 char *ptr_Mac = NULL;
 Func_WifiConnected f_ccb;
 static esp_netif_t *s_esp_netif = NULL;
+uint8_t conf_bssid[6];
+#define DEFAULT_SCAN_LIST_SIZE 10
 /*==================================================================================================
 *                                      GLOBAL CONSTANTS
 ==================================================================================================*/
@@ -118,11 +120,46 @@ esp_netif_t *get_example_netif_from_desc(const char *desc)
     free(expected_desc);
     return netif;
 }
+
+void wifi_scan(char *ssid)
+{
+    int8_t rssi_val = -100;
+    uint16_t number = DEFAULT_SCAN_LIST_SIZE;
+    wifi_ap_record_t ap_info[DEFAULT_SCAN_LIST_SIZE];
+    uint16_t ap_count = 0;
+    memset(ap_info, 0, sizeof(ap_info));
+
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+    ESP_ERROR_CHECK(esp_wifi_start());
+    esp_wifi_scan_start(NULL, true);
+    ESP_ERROR_CHECK(esp_wifi_scan_get_ap_num(&ap_count));
+    ESP_ERROR_CHECK(esp_wifi_scan_get_ap_records(&number, ap_info));
+    ESP_LOGI(TAG, "Tong so AP tim thay  = %u ", ap_count);
+
+    for (int i = 0; i < number; i++)
+    {
+        if (strcmp(ssid, (char *)ap_info[i].ssid) == 0)
+        {
+            if (ap_info[i].rssi > rssi_val)
+            {
+                rssi_val = ap_info[i].rssi;
+                for (int j = 0; j < 6; j++)
+                {
+                    conf_bssid[j] = ap_info[i].bssid[j];
+                }
+            }
+        }
+    }
+
+    ESP_ERROR_CHECK(esp_wifi_stop());
+}
+
 static esp_netif_t *wifi_start(void)
 {
     char *desc;
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+    wifi_scan(cptr_ssid);
     esp_netif_inherent_config_t esp_netif_config = ESP_NETIF_INHERENT_DEFAULT_WIFI_STA();
     asprintf(&desc, "%s: %s", TAG, esp_netif_config.if_desc);
     esp_netif_config.if_desc = desc;
@@ -143,6 +180,10 @@ static esp_netif_t *wifi_start(void)
     if (cptr_pass)
     {
         strncpy((char *)wifi_config.sta.password, cptr_pass, strlen(cptr_pass));
+    }
+    for (int i = 0; i < 6; i++)
+    {
+        wifi_config.sta.bssid[i] = conf_bssid[i];
     }
     ESP_LOGI(TAG, "Connecting to %s...", wifi_config.sta.ssid);
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
@@ -212,6 +253,23 @@ void Wifi_Connect(const char *ssid, const char *pass, const char *host)
  */
 void Wifi_Disconnect(void)
 {
+    if (s_esp_netif != NULL)
+    {
+        ESP_ERROR_CHECK(esp_event_handler_unregister(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &on_wifi_disconnect));
+        ESP_ERROR_CHECK(esp_event_handler_unregister(IP_EVENT, IP_EVENT_STA_GOT_IP, &on_got_ip));
+        esp_err_t err = esp_wifi_stop();
+        ESP_ERROR_CHECK(esp_unregister_shutdown_handler(&stop));
+        if (err == ESP_ERR_WIFI_NOT_INIT)
+        {
+            return;
+        }
+        ESP_ERROR_CHECK(err);
+        ESP_ERROR_CHECK(esp_wifi_deinit());
+        ESP_ERROR_CHECK(esp_wifi_clear_default_wifi_driver_and_handlers(s_esp_netif));
+        esp_netif_destroy(s_esp_netif);
+        s_esp_netif = NULL;
+        ESP_LOGI(TAG, "Disconnected from %s", cptr_ssid);
+    }
 }
 
 /*!
@@ -252,7 +310,6 @@ int16_t GetRssi(void)
         return 0;
     }
 }
-
 //---------------------------------------------------------------------------------------------------------------
 
 //======================================END FILE===================================================/

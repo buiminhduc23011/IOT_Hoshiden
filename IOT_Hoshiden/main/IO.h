@@ -48,10 +48,10 @@ extern "C"
 #define INPUT_SPARE_2 GPIO_NUM_34 // I3
 #define INPUT_SPARE_3 GPIO_NUM_35 // I4
 // OUTPUT
-#define RED GPIO_NUM_25          // O1
+#define RED GPIO_NUM_25           // O1
 #define YEL GPIO_NUM_26           // O2
 #define GRE GPIO_NUM_27           // O3
-#define BUZZ GPIO_NUM_14           // O4
+#define BUZZ GPIO_NUM_14          // O4
 #define XL01 GPIO_NUM_15          // O5
 #define TRIGGER_CAMERA GPIO_NUM_2 // O6
 
@@ -77,9 +77,12 @@ extern "C"
     void IO_Init();
     void SetBuzz(bool status);
     void SetError(uint16_t _E, bool _flicker);
+    int16_t GetError(void);
     void SetWarring(uint16_t _W);
     void HandleSystemEvents(void);
     void IORun(void);
+    uint16_t GetStateXL(void);
+    void SetStateXL(uint state);
 #ifdef __cplusplus
 }
 #endif

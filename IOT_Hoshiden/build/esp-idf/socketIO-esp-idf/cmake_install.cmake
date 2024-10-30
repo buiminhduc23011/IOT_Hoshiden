@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Ducne/Desktop/IOT_Hoshiden/component/socketIO-esp-idf
+# Install script for directory: C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden/component/socketIO-esp-idf
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/IOT_HOSHIDEN_20241022_104603")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/IOT_HOSHIDEN_20241028_102649")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

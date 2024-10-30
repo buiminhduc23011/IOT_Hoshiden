@@ -49,11 +49,12 @@ extern "C"
     /*==================================================================================================
     *                                             CLASS
     ==================================================================================================*/
+    void wifi_scan(char *ssid);
     /*!
      * \brief Ket noi voi wifi
      */
     void Wifi_Connect(const char *ssid, const char *pass, const char *host);
-    /*!
+    /*!cd
      * \brief Ngat ket noi wifi
      */
     void Wifi_Disconnect(void);

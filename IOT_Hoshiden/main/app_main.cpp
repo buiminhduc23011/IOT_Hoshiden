@@ -38,7 +38,6 @@ TaskHandle_t MainTaskHandle;
 SocketIoClientAPI sioapi;
 IOT_Data_t iot_Data;
 Eeprom envs;
-uint32_t Machine_Count = 0;
 char *text_rev;
 
 #define EX_UART_NUM UART_NUM_0
@@ -47,8 +46,11 @@ char *text_rev;
 #define RD_BUF_SIZE (BUF_SIZE)
 QueueHandle_t uart0_queue;
 char **buff_uart;
-
-char **split(char *str, char delimiter, int *count)
+uint16_t T_Retry_Wifi;
+uint16_t T_Dis_Server;
+uint16_t P_Connect;
+char **
+split(char *str, char delimiter, int *count)
 {
     int i, start = 0, part_count = 0;
     int len = strlen(str);
@@ -187,6 +189,67 @@ void SetConfig()
     envs.writeUint16(NVS_KEY_PORT_SERVER, ConvertToU16(buff_uart[4]));
     envs.writeString(NVS_KEY_HOST_NAME, buff_uart[5]);
 }
+void SaveState()
+{
+    if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB))
+    {
+        envs.writeString(NVS_KEY_QRCODE, "disconnect");
+        envs.writeUint16(NVS_KEY_STATE_UPDATE_PCB, 1);
+    }
+    else
+    {
+        if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_PCB))
+        {
+            envs.writeUint16(NVS_KEY_STATE_UPDATE_PCB, 1);
+        }
+        else
+        {
+            envs.writeUint16(NVS_KEY_STATE_UPDATE_PCB, 0);
+        }
+        char *qrcode = GetQRcode();
+        if (qrcode != NULL)
+        {
+            char *qrcode_copy = strdup(qrcode);
+            envs.writeString(NVS_KEY_QRCODE, qrcode_copy);
+            free(qrcode_copy);
+        }
+        else
+        {
+            envs.writeString(NVS_KEY_QRCODE, "null");
+        }
+        free(qrcode);
+    }
+    envs.writeUint16(NVS_KEY_STATE_XL, GetStateXL());
+}
+void ClearState()
+{
+    envs.writeUint16(NVS_KEY_STATE_UPDATE_PCB, 0);
+    envs.writeString(NVS_KEY_QRCODE, "null");
+    envs.writeUint16(NVS_KEY_STATE_XL, 0);
+    ESP_LOGI(TAG, "Free State");
+}
+void GetState()
+{
+    char _Qrcode[50];
+    if (envs.readString(NVS_KEY_QRCODE, _Qrcode) != 0)
+    {
+        SetQRCode(_Qrcode);
+    }
+    uint16_t StateUpdatePCB;
+    if (envs.readUint16(NVS_KEY_STATE_UPDATE_PCB, &StateUpdatePCB) != 0)
+    {
+        if (StateUpdatePCB == 1)
+        {
+            FLAG_SetFlag(FLAG_SIO_EVENT_UPDATE_PCB);
+        }
+    }
+    uint16_t State_XL;
+    if (envs.readUint16(NVS_KEY_STATE_XL, &State_XL) != 0)
+    {
+        SetStateXL(State_XL);
+    }
+    // ESP_LOGI("State Before", "QRcode: %s | State_Update_Server: %d | State_XL: %d", GetQRcode(), FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_PCB), GetStateXL());
+}
 //---------------------------------------------------------------------------------
 extern "C" void app_main()
 {
@@ -202,6 +265,7 @@ extern "C" void app_main()
     IO_Init();
     envs.begin(200);
     ReadConfig(&iot_Data);
+    GetState();
     uart_config_t uart_config = {
         .baud_rate = 115200,
         .data_bits = UART_DATA_8_BITS,
@@ -264,12 +328,11 @@ extern "C" void app_main()
     sioapi.begin(&iot_Data);
     sioapi.initCbFunc();
     sioapi.start();
-
     vTaskDelay(2000 / portTICK_PERIOD_MS);
 }
 void main_task(void)
 {
-    // ESP_LOGI("RSSI", "Current RSSI: %d dBm", GetRssi());
+    ESP_LOGI(TAG, "Current RSSI: %d dBm - Status Wifi: %d - Status Server: %d", GetRssi(), iot_Data.WifiStatus, iot_Data.ServerStatus);
     if (FLAG_GetFlag(FLAG_UART_EVENT_REV_DATA))
     {
         FLAG_ClearFlag(FLAG_UART_EVENT_REV_DATA);
@@ -299,15 +362,61 @@ void main_task(void)
         vTaskDelay(1000 / portTICK_PERIOD_MS);
         esp_restart();
     }
-    if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_PCB))
+    if (iot_Data.WifiStatus == true && iot_Data.ServerStatus == false)
     {
-        FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_PCB);
-        sioapi.SendPCB(GetQRcode());
+        if (T_Retry_Wifi < 1000)
+            T_Retry_Wifi++;
+        if (T_Retry_Wifi == 5)
+        {
+            SaveState();
+            // Wifi_Disconnect();
+            // vTaskDelay(1000 / portTICK_PERIOD_MS);
+            // Wifi_SetConnectCB(&WWifi_ConnectedCB);
+            // Wifi_Connect(iot_Data.Ssid, iot_Data.Pass, iot_Data.HostName);
+            ESP_LOGI(TAG, "Restart..........");
+            T_Retry_Wifi = 0;
+            esp_restart();
+        }
     }
-    if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB))
+    else
     {
-        FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB);
-        sioapi.SendPCB("disconnect");
+        T_Retry_Wifi = 0;
+    }
+    if (iot_Data.ServerStatus)
+    {
+        if (P_Connect < 1000)
+        {
+            P_Connect++;
+        }
+        if (P_Connect == 1)
+        {
+            ClearState();
+        }
+        if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_PCB))
+        {
+            FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_PCB);
+            sioapi.SendPCB(GetQRcode());
+        }
+        if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB))
+        {
+            FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB);
+            sioapi.SendPCB("disconnect");
+        }
+        T_Dis_Server = 0;
+        if (GetError() == 20)
+            SetError(0, true);
+    }
+    else
+    {
+        P_Connect = 0;
+        if (T_Dis_Server < 1000)
+        {
+            T_Dis_Server++;
+        }
+        if (T_Dis_Server == 15)
+        {
+            SetError(20, true);
+        }
     }
     if (iot_Data.ServerStatus == true && iot_Data.WifiStatus == true && ConnectCam() == true)
     {

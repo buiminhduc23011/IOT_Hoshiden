@@ -18,7 +18,8 @@ Modification
 #define __TCP_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 /*==================================================================================================
@@ -26,18 +27,19 @@ extern "C" {
 ==================================================================================================*/
 #include "wizchip_conf.h"
 
-/*==================================================================================================
-*                                      FUNCTION PROTOTYPES
-==================================================================================================*/
+    /*==================================================================================================
+    *                                      FUNCTION PROTOTYPES
+    ==================================================================================================*/
 
-/*!
- * \brief Initialize TCP settings and start the TCP loopback task
- */
-void TCP_Init(void);
-void TCP_Run(void);
-char *GetQRcode(void);
-void reset_QRcode(void);
-bool ConnectCam(void);
+    /*!
+     * \brief Initialize TCP settings and start the TCP loopback task
+     */
+    void TCP_Init(void);
+    void TCP_Run(void);
+    char *GetQRcode(void);
+    void SetQRCode(char *value);
+    void reset_QRcode(void);
+    bool ConnectCam(void);
 #ifdef __cplusplus
 }
 #endif

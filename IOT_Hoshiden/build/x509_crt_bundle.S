@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/Ducne/Desktop/IOT_Hoshiden/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/IOT_Hoshiden/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded
