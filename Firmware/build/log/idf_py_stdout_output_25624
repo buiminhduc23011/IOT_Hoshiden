@@ -1,0 +1,887 @@
+[0;32mI (13) boot: ESP-IDF v5.3.2 2nd stage bootloader[0m
+[0;32mI (13) boot: compile time Jan 14 2025 11:37:42[0m
+[0;32mI (13) boot: Multicore bootloader[0m
+[0;32mI (17) boot: chip revision: v3.1[0m
+[0;32mI (20) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (25) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (30) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (34) boot: Enabling RNG early entropy source...[0m
+[0;32mI (40) boot: Partition Table:[0m
+[0;32mI (43) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (50) boot:  0 nvs              WiFi data        01 02 00011000 00019000[0m
+[0;32mI (58) boot:  1 otadata          OTA data         01 00 0002a000 00002000[0m
+[0;32mI (65) boot:  2 phy_init         RF data          01 01 0002c000 00001000[0m
+[0;32mI (73) boot:  3 ota_0            OTA app          00 10 00030000 001a9000[0m
+[0;32mI (80) boot:  4 ota_1            OTA app          00 11 001e0000 001a9000[0m
+[0;32mI (88) boot:  5 ot_storage       Unknown data     01 3a 00389000 00002000[0m
+[0;32mI (95) boot: End of partition table[0m
+[0;32mI (99) boot: No factory image, trying OTA 0[0m
+[0;32mI (104) esp_image: segment 0: paddr=00030020 vaddr=3f400020 size=2a9e0h (174560) map[0m
+[0;32mI (173) esp_image: segment 1: paddr=0005aa08 vaddr=3ffb0000 size=0434ch ( 17228) load[0m
+[0;32mI (179) esp_image: segment 2: paddr=0005ed5c vaddr=40080000 size=012bch (  4796) load[0m
+[0;32mI (181) esp_image: segment 3: paddr=00060020 vaddr=400d0020 size=dbf00h (900864) map[0m
+[0;32mI (496) esp_image: segment 4: paddr=0013bf28 vaddr=400812bc size=19c10h (105488) load[0m
+[0;32mI (550) boot: Loaded app from partition at offset 0x30000[0m
+[0;32mI (566) boot: Set actual ota_seq=1 in otadata[0][0m
+[0;32mI (566) boot: Disabling RNG early entropy source...[0m
+[0;32mI (577) cpu_start: Multicore app[0m
+[0;32mI (586) cpu_start: Pro cpu start user code[0m
+[0;32mI (586) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (586) app_init: Application information:[0m
+[0;32mI (589) app_init: Project name:     IOT_HOSHIDEN_20250114_113600[0m
+[0;32mI (595) app_init: App version:      1.0.2_20250114_113600[0m
+[0;32mI (601) app_init: Compile time:     Jan 14 2025 11:36:23[0m
+[0;32mI (607) app_init: ELF file SHA256:  75f31158350d6a68...[0m
+[0;32mI (613) app_init: ESP-IDF:          v5.3.2[0m
+[0;32mI (618) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (623) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (628) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (633) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (640) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (646) heap_init: At 3FFB9E88 len 00026178 (152 KiB): DRAM[0m
+[0;32mI (652) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (658) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (665) heap_init: At 4009AECC len 00005134 (20 KiB): IRAM[0m
+[0;32mI (672) spi_flash: detected chip: generic[0m
+[0;32mI (676) spi_flash: flash io: dio[0m
+[0;32mI (681) main_task: Started on CPU0[0m
+[0;32mI (691) main_task: Calling app_main()[0m
+[0;32mI (691) MAIN: Initialising WiFi Connection...[0m
+[0;32mI (731) gpio: GPIO[34]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (731) gpio: GPIO[35]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (741) gpio: GPIO[36]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (751) gpio: GPIO[39]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[14]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[15]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[25]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[26]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[27]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) IO: Starting[0m
+[0;32mI (821) NVS: Hoan thanh
+[0m
+[0;32mI (821) uart: ESP_INTR_FLAG_IRAM fla[0;32mI (851) esp_eth.netif.netif_glue: 0a:d1:f9:3a:77:a8[0m
+[0;32mI (851) esp_eth.netif.netif_glue: ethernet attached to netif[0m
+[0;32mI (851) ETHERNET-TASK: Creating esp_netif...[0m
+[0;32mI (851) ETHERNET-TASK: esp_netif created successfully with key: ETH_0[0m
+[0;32mI (861) ETHERNET-TASK: Attaching driver to esp_netif...[0m
+[0;32mI (871) esp_eth.netif.netif_glue: 0a:d1:f9:3a:77:a8[0m
+[0;32mI (871) esp_eth.netif.netif_glue: ethernet attached to netif[0m
+[0;32mI (881) ETHERNET-TASK: Driver attached successfully[0m
+[0;32mI (881) ETHERNET-TASK: Configuring static IP...[0m
+[0;32mI (891) ETHERNET-TASK: DHCP client stopped successfully[0m
+[0;32mI (891) ETHERNET-TASK: Static IP configured: IP: 192.168.0.199, GW: 0.0.0.0, NM: 255.255.255.0[0m
+[0;32mI (911) TCP_SERVER: Starting TCP Server[0m
+[0;32mI (911) ETHERNET-TASK: Ethernet Started[0m
+[0;32mI (911) ETHERNET-TASK: Waiting for IP Address Allocation..............[0m
+[0;32mI (921) TCP_SERVER: Socket listening on port 5000[0m
+[0;32mI (931) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (2911) ETHERNET-TASK: Ethernet Connected[0m
+[0;32mI (2911) ETHERNET-TASK: Ethernet HW Addr 0a:d1:f9:3a:77:a8[0m
+[0;32mI (2911) esp_netif_handlers: eth ip: 192.168.0.199, mask: 255.255.255.0, gw: 0.0.0.0[0m
+[0;32mI (2921) ETHERNET-TASK: Ethernet Got IP Address[0m
+[0;32mI (2921) ETHERNET-TASK: -----------------------[0m
+[0;32mI (2931) ETHERNET-TASK: IP: 192.168.0.199[0m
+[0;32mI (2931) ETHERNET-TASK: NETMASK: 255.255.255.0[0m
+[0;32mI (2941) ETHERNET-TASK: GATEWAY: 0.0.0.0[0m
+[0;32mI (2941) ETHERNET-TASK: -----------------------[0m
+[0;32mI (12451) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (13871) TCP_SERVER: Connection closed[0m
+[0;32mI (13871) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (14421) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (14601) TCP_SERVER: Connection closed[0m
+[0;32mI (14601) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (14811) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (14971) TCP_SERVER: Connection closed[0m
+[0;32mI (14971) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (15171) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (15321) TCP_SERVER: Connection closed[0m
+[0;32mI (15321) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (15511) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (15661) TCP_SERVER: Connection closed[0m
+[0;32mI (15661) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (16721) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (16911) TCP_SERVER: Connection closed[0m
+[0;32mI (16911) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (17131) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (17301) TCP_SERVER: Connection closed[0m
+[0;32mI (17301) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (17501) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (17671) TCP_SERVER: Connection closed[0m
+[0;32mI (17671) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (17861) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (18041) TCP_SERVER: Connection closed[0m
+[0;32mI (18041) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (18251) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (18431) TCP_SERVER: Connection closed[0m
+[0;32mI (18431) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (18631) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (18811) TCP_SERVER: Connection closed[0m
+[0;32mI (18811) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (19011) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (19181) TCP_SERVER: Connection closed[0m
+[0;32mI (19181) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (19391) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (19551) TCP_SERVER: Connection closed[0m
+[0;32mI (19551) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (19771) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (19941) TCP_SERVER: Connection closed[0m
+[0;32mI (19941) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (20941) wifi:wifi driver task: 3ffca58c, prio:23, stack:6656, core=0[0m
+[0;32mI (20941) wifi:wifi firmware version: b0fd6006b[0m
+[0;32mI (20941) wifi:wifi certification version: v7.0[0m
+[0;32mI (20941) wifi:config NVS flash: enabled[0m
+[0;32mI (20941) wifi:config nano formating: disabled[0m
+[0;32mI (20951) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (20951) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (20961) wifi:Init management short buffer num: 32[0m
+[0;32mI (20961) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (20971) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (20971) wifi:Init static rx buffer num: 10[0m
+[0;32mI (20971) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (20981) wifi_init: rx ba win: 6[0m
+[0;32mI (20981) wifi_init: accept mbox: 6[0m
+[0;32mI (20991) wifi_init: tcpip mbox: 32[0m
+[0;32mI (20991) wifi_init: udp mbox: 6[0m
+[0;32mI (20991) wifi_init: tcp mbox: 6[0m
+[0;32mI (21001) wifi_init: tcp tx win: 5760[0m
+[0;32mI (21001) wifi_init: tcp rx win: 5760[0m
+[0;32mI (21011) wifi_init: tcp mss: 1440[0m
+[0;32mI (21011) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (21011) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (21021) phy_init: phy_version 4840,02e0d70,Sep  2 2024,19:39:07[0m
+[0;32mI (21111) wifi:mode : sta (08:d1:f9:3a:77:a8)[0m
+[0;32mI (21111) wifi:enable tsf[0m
+[0;32mI (21941) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (23311) TCP_SERVER: Received 9 bytes: gggjjjjjj[0m
+[0;32mI (23501) TCP_SERVER: Received 9 bytes: gggjjjjjj[0m
+[0;32mI (23611) WifiClient: Tong so AP tim thay  = 6 [0m
+[0;32mI (23611) wifi:flush txq[0m
+[0;32mI (23611) wifi:stop sw txq[0m
+[0;32mI (23611) wifi:lmac stop hw txq[0m
+[0;32mI (23611) WifiClient: Connecting to STI_VietNam_No8...[0m
+[0;33mW (23611) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (23631) wifi:mode : sta (08:d1:f9:3a:77:a8)[0m
+[0;32mI (23631) wifi:enable tsf[0m
+[0;32mI (23631) WifiClient: Wifi Connected[0m
+[0;32mI (23701) TCP_SERVER: Received 9 bytes: gggjjjjjj[0m
+[0;32mI (23961) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (23961) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (23971) TCP_SERVER: Received 9 bytes: gggjjjjjj[0m
+[0;32mI (24061) TCP_SERVER: Received 9 bytes: gggjjjjjj[0m
+[0;32mI (24261) TCP_SERVER: Received 9 bytes: gggjjjjjj[0m
+[0;32mI (24521) TCP_SERVER: Received 9 bytes: gggjjjjjj[0m
+[0;32mI (24691) TCP_SERVER: Received 9 bytes: gggjjjjjj[0m
+[0;32mI (24861) TCP_SERVER: Received 9 bytes: gggjjjjjj[0m
+[0;32mI (24961) wifi:state: auth -> init (0x200)[0m
+[0;32mI (24961) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (24961) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (25041) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (25041) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (25781) TCP_SERVER: Connection closed[0m
+[0;32mI (25791) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (26041) wifi:state: auth -> init (0x200)[0m
+[0;32mI (26041) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (26051) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (27771) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (28161) TCP_SERVER: Connection closed[0m
+[0;32mI (28171) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (28351) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (28471) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (28521) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (28521) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (28521) TCP_SERVER: Connection closed[0m
+[0;32mI (28531) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (28701) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (28861) TCP_SERVER: Connection closed[0m
+[0;32mI (28871) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (29081) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (29241) TCP_SERVER: Connection closed[0m
+[0;32mI (29251) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (29431) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (29521) wifi:state: auth -> init (0x200)[0m
+[0;32mI (29521) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (29521) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (29541) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (29541) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (29591) TCP_SERVER: Connection closed[0m
+[0;32mI (29601) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (29771) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (29921) TCP_SERVER: Connection closed[0m
+[0;32mI (29931) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (30081) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (30251) TCP_SERVER: Connection closed[0m
+[0;32mI (30261) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (30441) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (30541) wifi:state: auth -> init (0x200)[0m
+[0;32mI (30551) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (30551) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (31801) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (31801) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (32071) TCP_SERVER: Connection closed[0m
+[0;32mI (32081) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (32801) wifi:state: auth -> init (0x200)[0m
+[0;32mI (32811) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (32811) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (32831) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (32831) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (33831) wifi:state: auth -> init (0x200)[0m
+[0;32mI (33831) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (33831) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (36251) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (36301) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (36301) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (37311) wifi:state: auth -> init (0x200)[0m
+[0;32mI (37311) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (37311) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (37331) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (37331) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (38331) wifi:state: auth -> init (0x200)[0m
+[0;32mI (38331) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (38331) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (38551) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (38551) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (39551) wifi:state: auth -> init (0x200)[0m
+[0;32mI (39551) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (39551) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (39581) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (39581) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (40581) wifi:state: auth -> init (0x200)[0m
+[0;32mI (40581) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (40581) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (43001) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (43051) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (43051) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (44051) wifi:state: auth -> init (0x200)[0m
+[0;32mI (44051) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (44051) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (44071) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (44081) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (45081) wifi:state: auth -> init (0x200)[0m
+[0;32mI (45081) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (45081) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (46331) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (46331) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (47341) wifi:state: auth -> init (0x200)[0m
+[0;32mI (47341) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (47341) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (47361) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (47361) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (48361) wifi:state: auth -> init (0x200)[0m
+[0;32mI (48361) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (48361) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (50781) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (50841) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (50841) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (51841) wifi:state: auth -> init (0x200)[0m
+[0;32mI (51841) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (51841) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (51861) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (51861) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (52861) wifi:state: auth -> init (0x200)[0m
+[0;32mI (52861) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (52871) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (53081) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (53081) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (54081) wifi:state: auth -> init (0x200)[0m
+[0;32mI (54081) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (54081) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (54101) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (54101) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (55111) wifi:state: auth -> init (0x200)[0m
+[0;32mI (55111) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (55111) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (57531) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (57581) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (57581) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (58581) wifi:state: auth -> init (0x200)[0m
+[0;32mI (58581) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (58581) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (58611) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (58611) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (59611) wifi:state: auth -> init (0x200)[0m
+[0;32mI (59611) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (59611) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (62031) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (62081) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (62081) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (63081) wifi:state: auth -> init (0x200)[0m
+[0;32mI (63091) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (63091) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (63111) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (63111) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (64111) wifi:state: auth -> init (0x200)[0m
+[0;32mI (64111) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (64111) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (65371) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (65371) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (66371) wifi:state: auth -> init (0x200)[0m
+[0;32mI (66371) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (66371) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (66391) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (66391) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (67391) wifi:state: auth -> init (0x200)[0m
+[0;32mI (67401) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (67401) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (69821) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (69961) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (69961) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (70971) wifi:state: auth -> init (0x200)[0m
+[0;32mI (70971) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (70971) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (70991) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (70991) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (71991) wifi:state: auth -> init (0x200)[0m
+[0;32mI (71991) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (71991) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (73251) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (73251) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (74251) wifi:state: auth -> init (0x200)[0m
+[0;32mI (74251) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (74251) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (74271) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (74271) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (75271) wifi:state: auth -> init (0x200)[0m
+[0;32mI (75281) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (75281) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (77701) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (77751) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (77751) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (78751) wifi:state: auth -> init (0x200)[0m
+[0;32mI (78751) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (78751) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (78881) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (78881) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (79881) wifi:state: auth -> init (0x200)[0m
+[0;32mI (79881) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (79881) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (80101) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (80101) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (81101) wifi:state: auth -> init (0x200)[0m
+[0;32mI (81101) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (81101) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (81121) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (81121) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (82121) wifi:state: auth -> init (0x200)[0m
+[0;32mI (82121) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (82121) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (84541) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (84601) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (84601) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (85601) wifi:state: auth -> init (0x200)[0m
+[0;32mI (85601) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (85601) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (85731) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (85731) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (86731) wifi:state: auth -> init (0x200)[0m
+[0;32mI (86731) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (86731) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (87981) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (87991) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (88991) wifi:state: auth -> init (0x200)[0m
+[0;32mI (88991) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (88991) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (89011) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (89011) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (90011) wifi:state: auth -> init (0x200)[0m
+[0;32mI (90011) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (90011) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (92431) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (92491) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (92491) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (93491) wifi:state: auth -> init (0x200)[0m
+[0;32mI (93491) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (93491) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (93711) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (93711) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (94711) wifi:state: auth -> init (0x200)[0m
+[0;32mI (94711) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (94711) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (94731) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (94731) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (95731) wifi:state: auth -> init (0x200)[0m
+[0;32mI (95731) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (95731) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (96991) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (96991) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (97991) wifi:state: auth -> init (0x200)[0m
+[0;32mI (98001) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (98001) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (100421) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (100471) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (100471) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (101471) wifi:state: auth -> init (0x200)[0m
+[0;32mI (101471) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (101471) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (101491) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (101491) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (102501) wifi:state: auth -> init (0x200)[0m
+[0;32mI (102501) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (102501) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (102711) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (102711) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (103711) wifi:state: auth -> init (0x200)[0m
+[0;32mI (103711) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (103721) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (103741) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (103741) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (104741) wifi:state: auth -> init (0x200)[0m
+[0;32mI (104741) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (104741) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (107161) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (107211) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (107211) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (107231) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (108231) wifi:state: assoc -> init (0x2700)[0m
+[0;32mI (108231) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (108231) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (108341) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (108341) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (109341) wifi:state: auth -> init (0x200)[0m
+[0;32mI (109351) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (109351) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (110601) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (110601) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (111601) wifi:state: auth -> init (0x200)[0m
+[0;32mI (111601) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (111611) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (114031) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (114171) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (114171) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (115181) wifi:state: auth -> init (0x200)[0m
+[0;32mI (115181) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (115181) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (115201) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (115201) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (115871) TCP_SERVER: Socket accepted, ip address: 192.168.0.100[0m
+[0;32mI (116201) wifi:state: auth -> init (0x200)[0m
+[0;32mI (116201) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (116201) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (117551) TCP_SERVER: Connection closed[0m
+[0;32mI (117561) TCP_SERVER: Waiting for connection...[0m
+[0;32mI (118621) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (118671) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (118681) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (119681) wifi:state: auth -> init (0x200)[0m
+[0;32mI (119681) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (119681) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (119701) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (119701) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (120701) wifi:state: auth -> init (0x200)[0m
+[0;32mI (120701) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (120711) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (123131) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (123181) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (123181) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (124181) wifi:state: auth -> init (0x200)[0m
+[0;32mI (124181) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (124181) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (124201) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (124201) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (125201) wifi:state: auth -> init (0x200)[0m
+[0;32mI (125211) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (125211) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (126461) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (126461) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (127471) wifi:state: auth -> init (0x200)[0m
+[0;32mI (127471) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (127471) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (127491) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (127491) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (128491) wifi:state: auth -> init (0x200)[0m
+[0;32mI (128491) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (128491) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (130911) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (130971) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (130971) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (131971) wifi:state: auth -> init (0x200)[0m
+[0;32mI (131971) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (131971) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (132091) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (132091) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (133091) wifi:state: auth -> init (0x200)[0m
+[0;32mI (133091) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (133091) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (133311) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (133311) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (134311) wifi:state: auth -> init (0x200)[0m
+[0;32mI (134311) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (134311) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (134331) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (134341) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (135341) wifi:state: auth -> init (0x200)[0m
+[0;32mI (135341) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (135341) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (137761) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (137811) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (137811) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (138811) wifi:state: auth -> init (0x200)[0m
+[0;32mI (138811) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (138821) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (138841) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (138841) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (139841) wifi:state: auth -> init (0x200)[0m
+[0;32mI (139841) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (139841) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (141101) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (141101) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (142101) wifi:state: auth -> init (0x200)[0m
+[0;32mI (142101) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (142101) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (142121) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (142121) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (143121) wifi:state: auth -> init (0x200)[0m
+[0;32mI (143121) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (143131) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (145551) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (145601) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (145601) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (146601) wifi:state: auth -> init (0x200)[0m
+[0;32mI (146601) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (146601) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (146621) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (146631) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (147631) wifi:state: auth -> init (0x200)[0m
+[0;32mI (147631) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (147631) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (147841) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (147841) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (148841) wifi:state: auth -> init (0x200)[0m
+[0;32mI (148851) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (148851) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (148871) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (148871) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (149871) wifi:state: auth -> init (0x200)[0m
+[0;32mI (149871) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (149871) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (152291) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (152341) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (152341) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (153351) wifi:state: auth -> init (0x200)[0m
+[0;32mI (153351) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (153351) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (153371) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (153371) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (154371) wifi:state: auth -> init (0x200)[0m
+[0;32mI (154371) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (154371) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (155631) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (155631) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (156631) wifi:state: auth -> init (0x200)[0m
+[0;32mI (156631) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (156631) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (156651) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (156651) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (157661) wifi:state: auth -> init (0x200)[0m
+[0;32mI (157661) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (157661) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (160081) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (160131) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (160131) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (161131) wifi:state: auth -> init (0x200)[0m
+[0;32mI (161131) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (161131) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (161161) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (161161) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (162161) wifi:state: auth -> init (0x200)[0m
+[0;32mI (162161) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (162161) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (162371) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (162371) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (163381) wifi:state: auth -> init (0x200)[0m
+[0;32mI (163381) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (163381) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (163401) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (163401) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (164401) wifi:state: auth -> init (0x200)[0m
+[0;32mI (164401) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (164401) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (166821) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (166881) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (166881) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (167881) wifi:state: auth -> init (0x200)[0m
+[0;32mI (167881) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (167881) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (167901) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (167901) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (168901) wifi:state: auth -> init (0x200)[0m
+[0;32mI (168901) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (168901) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (170161) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (170161) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (171161) wifi:state: auth -> init (0x200)[0m
+[0;32mI (171161) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (171161) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (171181) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (171191) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (172191) wifi:state: auth -> init (0x200)[0m
+[0;32mI (172191) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (172191) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (174611) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (174661) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (174661) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (175661) wifi:state: auth -> init (0x200)[0m
+[0;32mI (175671) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (175671) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (175691) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (175691) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (176691) wifi:state: auth -> init (0x200)[0m
+[0;32mI (176691) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (176691) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (176901) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (176911) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (177911) wifi:state: auth -> init (0x200)[0m
+[0;32mI (177911) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (177911) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (177931) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (177931) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (178931) wifi:state: auth -> init (0x200)[0m
+[0;32mI (178941) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (178941) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (181361) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (181411) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (181411) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (182411) wifi:state: auth -> init (0x200)[0m
+[0;32mI (182411) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (182411) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (182431) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (182431) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (183431) wifi:state: auth -> init (0x200)[0m
+[0;32mI (183441) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (183441) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (184691) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (184691) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (185691) wifi:state: auth -> init (0x200)[0m
+[0;32mI (185701) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (185701) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (185721) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (185721) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (186721) wifi:state: auth -> init (0x200)[0m
+[0;32mI (186731) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (186731) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (189151) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (189291) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (189291) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (190291) wifi:state: auth -> init (0x200)[0m
+[0;32mI (190291) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (190291) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (190311) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (190311) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (191311) wifi:state: auth -> init (0x200)[0m
+[0;32mI (191321) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (191321) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (192571) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (192571) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (193571) wifi:state: auth -> init (0x200)[0m
+[0;32mI (193581) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (193581) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (193601) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (193601) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (194601) wifi:state: auth -> init (0x200)[0m
+[0;32mI (194601) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (194601) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (197021) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (197081) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (197081) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (198081) wifi:state: auth -> init (0x200)[0m
+[0;32mI (198081) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (198081) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (198101) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (198101) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (199101) wifi:state: auth -> init (0x200)[0m
+[0;32mI (199101) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (199101) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (199321) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (199321) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (200321) wifi:state: auth -> init (0x200)[0m
+[0;32mI (200321) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (200321) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (200341) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (200341) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (201341) wifi:state: auth -> init (0x200)[0m
+[0;32mI (201341) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (201351) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (203771) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (203821) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (203821) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (204821) wifi:state: auth -> init (0x200)[0m
+[0;32mI (204821) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (204821) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (204841) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (204841) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (205851) wifi:state: auth -> init (0x200)[0m
+[0;32mI (205851) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (205851) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (207101) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (207101) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (208111) wifi:state: auth -> init (0x200)[0m
+[0;32mI (208111) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (208111) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (210531) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (210581) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (210581) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (211581) wifi:state: auth -> init (0x200)[0m
+[0;32mI (211591) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (211591) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (211611) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (211611) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (212611) wifi:state: auth -> init (0x200)[0m
+[0;32mI (212611) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (212611) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (212821) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (212831) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (213831) wifi:state: auth -> init (0x200)[0m
+[0;32mI (213831) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (213831) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (213851) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (213851) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (214851) wifi:state: auth -> init (0x200)[0m
+[0;32mI (214851) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (214851) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (217271) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (217331) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (217331) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (218331) wifi:state: auth -> init (0x200)[0m
+[0;32mI (218331) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (218331) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (218351) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (218351) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (219351) wifi:state: auth -> init (0x200)[0m
+[0;32mI (219361) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (219361) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (220611) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (220621) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (221621) wifi:state: auth -> init (0x200)[0m
+[0;32mI (221621) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (221621) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (221641) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (221641) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (222641) wifi:state: auth -> init (0x200)[0m
+[0;32mI (222641) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (222641) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (225061) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (225111) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (225111) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (226121) wifi:state: auth -> init (0x200)[0m
+[0;32mI (226121) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (226121) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (226331) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (226331) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (227341) wifi:state: auth -> init (0x200)[0m
+[0;32mI (227341) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (227341) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (227361) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (227361) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (228361) wifi:state: auth -> init (0x200)[0m
+[0;32mI (228361) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (228361) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (229621) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (229621) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (230621) wifi:state: auth -> init (0x200)[0m
+[0;32mI (230621) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (230621) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (233041) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (233101) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (233101) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (234101) wifi:state: auth -> init (0x200)[0m
+[0;32mI (234101) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (234101) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (234221) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (234221) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (235231) wifi:state: auth -> init (0x200)[0m
+[0;32mI (235231) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (235231) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (235441) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (235441) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (236441) wifi:state: auth -> init (0x200)[0m
+[0;32mI (236441) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (236451) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (236471) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (236471) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (237471) wifi:state: auth -> init (0x200)[0m
+[0;32mI (237471) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (237471) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (239891) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (239941) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (239941) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (240951) wifi:state: auth -> init (0x200)[0m
+[0;32mI (240951) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (240951) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (240971) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (240971) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (241971) wifi:state: auth -> init (0x200)[0m
+[0;32mI (241971) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (241971) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (243231) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (243231) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (244231) wifi:state: auth -> init (0x200)[0m
+[0;32mI (244231) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (244231) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (244251) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (244251) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (245251) wifi:state: auth -> init (0x200)[0m
+[0;32mI (245261) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (245261) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (247681) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (247821) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (247831) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (248831) wifi:state: auth -> init (0x200)[0m
+[0;32mI (248831) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (248831) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (248851) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (248851) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (249851) wifi:state: auth -> init (0x200)[0m
+[0;32mI (249851) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (249851) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (251111) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (251111) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (252111) wifi:state: auth -> init (0x200)[0m
+[0;32mI (252111) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (252111) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (252131) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (252131) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (253131) wifi:state: auth -> init (0x200)[0m
+[0;32mI (253141) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (253141) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (255561) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (255621) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (255621) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (256621) wifi:state: auth -> init (0x200)[0m
+[0;32mI (256621) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (256621) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (256741) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (256741) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (257741) wifi:state: auth -> init (0x200)[0m
+[0;32mI (257741) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (257741) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (257951) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (257961) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (258961) wifi:state: auth -> init (0x200)[0m
+[0;32mI (258961) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (258961) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (258981) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (258981) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (259981) wifi:state: auth -> init (0x200)[0m
+[0;32mI (259981) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (259981) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (262401) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (262461) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (262461) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (263461) wifi:state: auth -> init (0x200)[0m
+[0;32mI (263461) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (263461) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (263481) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (263481) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (264481) wifi:state: auth -> init (0x200)[0m
+[0;32mI (264491) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (264491) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (265741) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (265741) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (266741) wifi:state: auth -> init (0x200)[0m
+[0;32mI (266751) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (266751) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (266771) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (266771) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (267771) wifi:state: auth -> init (0x200)[0m
+[0;32mI (267771) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (267771) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m

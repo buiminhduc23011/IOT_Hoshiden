@@ -1,0 +1,502 @@
+[0;32mI (13) boot: ESP-IDF v5.3.2 2nd stage bootloader[0m
+[0;32mI (13) boot: compile time Jan 14 2025 11:37:42[0m
+[0;32mI (13) boot: Multicore bootloader[0m
+[0;32mI (17) boot: chip revision: v3.1[0m
+[0;32mI (20) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (25) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (30) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (34) boot: Enabling RNG early entropy source...[0m
+[0;32mI (40) boot: Partition Table:[0m
+[0;32mI (43) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (50) boot:  0 nvs              WiFi data        01 02 00011000 00019000[0m
+[0;32mI (58) boot:  1 otadata          OTA data         01 00 0002a000 00002000[0m
+[0;32mI (65) boot:  2 phy_init         RF data          01 01 0002c000 00001000[0m
+[0;32mI (73) boot:  3 ota_0            OTA app          00 10 00030000 001a9000[0m
+[0;32mI (80) boot:  4 ota_1            OTA app          00 11 001e0000 001a9000[0m
+[0;32mI (88) boot:  5 ot_storage       Unknown data     01 3a 00389000 00002000[0m
+[0;32mI (95) boot: End of partition table[0m
+[0;32mI (99) boot: No factory image, trying OTA 0[0m
+[0;32mI (104) esp_image: segment 0: paddr=00030020 vaddr=3f400020 size=25c60h (154720) map[0m
+[0;32mI (166) esp_image: segment 1: paddr=00055c88 vaddr=3ffb0000 size=041f0h ( 16880) load[0m
+[0;32mI (172) esp_image: segment 2: paddr=00059e80 vaddr=40080000 size=06198h ( 24984) load[0m
+[0;32mI (182) esp_image: segment 3: paddr=00060020 vaddr=400d0020 size=d4160h (868704) map[0m
+[0;32mI (480) esp_image: segment 4: paddr=00134188 vaddr=40086198 size=131a0h ( 78240) load[0m
+[0;32mI (524) boot: Loaded app from partition at offset 0x30000[0m
+[0;32mI (539) boot: Set actual ota_seq=1 in otadata[0][0m
+[0;32mI (539) boot: Disabling RNG early entropy source...[0m
+[0;32mI (551) cpu_start: Multicore app[0m
+[0;32mI (559) cpu_start: Pro cpu start user code[0m
+[0;32mI (560) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (560) app_init: Application information:[0m
+[0;32mI (562) app_init: Project name:     IOT_HOSHIDEN_20250114_113600[0m
+[0;32mI (569) app_init: App version:      1.0.2_20250114_113600[0m
+[0;32mI (575) app_init: Compile time:     Jan 14 2025 11:36:23[0m
+[0;32mI (581) app_init: ELF file SHA256:  4819a967bad8738b...[0m
+[0;32mI (587) app_init: ESP-IDF:          v5.3.2[0m
+[0;32mI (592) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (597) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (602) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (607) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (614) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (620) heap_init: At 3FFB9CF0 len 00026310 (152 KiB): DRAM[0m
+[0;32mI (626) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (632) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (639) heap_init: At 40099338 len 00006CC8 (27 KiB): IRAM[0m
+[0;32mI (646) spi_flash: detected chip: generic[0m
+[0;32mI (650) spi_flash: flash io: dio[0m
+[0;32mI (655) main_task: Started on CPU0[0m
+[0;32mI (665) main_task: Calling app_main()[0m
+[0;32mI (665) MAIN: Initialising WiFi Connection...[0m
+[0;32mI (705) gpio: GPIO[34]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (705) gpio: GPIO[35]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (715) gpio: GPIO[36]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (725) gpio: GPIO[39]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (735) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (745) gpio: GPIO[14]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (745) gpio: GPIO[15]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (755) gpio: GPIO[25]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (765) gpio: GPIO[26]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (775) gpio: GPIO[27]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (785) IO: Starting[0m
+[0;32mI (795) NVS: Hoan thanh
+[0m
+[0;32mI (795) uart: ESP_INTR_FLAG_IRAM fla[0;31mE (1785) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (1785) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (2795) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (2795) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (3805) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (3805) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (4815) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (4815) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (5825) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (5825) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (6835) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (6835) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (7845) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (7845) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (8855) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (8855) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (9865) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (9865) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (10875) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (10875) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (11885) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (11885) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (12895) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (12895) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (13905) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (13905) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (14915) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (14915) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (15925) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (15925) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (16935) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (16935) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (17945) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (17945) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (18955) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (18955) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;31mE (19965) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_INIT[0m
+[0;32mI (19965) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (20815) wifi:wifi driver task: 3ffc5b5c, prio:23, stack:6656, core=0[0m
+[0;32mI (20815) wifi:wifi firmware version: b0fd6006b[0m
+[0;32mI (20815) wifi:wifi certification version: v7.0[0m
+[0;32mI (20815) wifi:config NVS flash: enabled[0m
+[0;32mI (20815) wifi:config nano formating: disabled[0m
+[0;32mI (20825) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (20825) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (20835) wifi:Init management short buffer num: 32[0m
+[0;32mI (20835) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (20845) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (20845) wifi:Init static rx buffer num: 10[0m
+[0;32mI (20845) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (20855) wifi_init: rx ba win: 6[0m
+[0;32mI (20855) wifi_init: accept mbox: 6[0m
+[0;32mI (20865) wifi_init: tcpip mbox: 32[0m
+[0;32mI (20865) wifi_init: udp mbox: 6[0m
+[0;32mI (20865) wifi_init: tcp mbox: 6[0m
+[0;32mI (20875) wifi_init: tcp tx win: 5760[0m
+[0;32mI (20875) wifi_init: tcp rx win: 5760[0m
+[0;32mI (20885) wifi_init: tcp mss: 1440[0m
+[0;32mI (20885) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (20885) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (20895) phy_init: phy_version 4840,02e0d70,Sep  2 2024,19:39:07[0m
+[0;32mI (20985) wifi:mode : sta (08:d1:f9:3a:77:a8)[0m
+[0;32mI (20985) wifi:enable tsf[0m
+[0;33mW (20985) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (20985) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (20975) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (22015) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (22015) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (22015) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (23025) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (23025) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (23025) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (23505) WifiClient: Tong so AP tim thay  = 7 [0m
+[0;32mI (23505) wifi:flush txq[0m
+[0;32mI (23505) wifi:stop sw txq[0m
+[0;32mI (23505) wifi:lmac stop hw txq[0m
+[0;32mI (23505) WifiClient: Connecting to STI_VietNam_No8...[0m
+[0;33mW (23505) wifi:Password length matches WPA2 standards, authmode threshold changes from OPEN to WPA2[0m
+[0;32mI (23525) wifi:mode : sta (08:d1:f9:3a:77:a8)[0m
+[0;32mI (23525) wifi:enable tsf[0m
+[0;32mI (23525) WifiClient: Wifi Connected[0m
+[0;32mI (23875) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (23875) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (24035) MAIN: Current RSSI: -81 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (24875) wifi:state: auth -> init (0x200)[0m
+[0;32mI (24875) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (24875) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (24955) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (24955) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (25045) MAIN: Current RSSI: -83 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (25955) wifi:state: auth -> init (0x200)[0m
+[0;32mI (25955) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (25955) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (26055) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (26055) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (26055) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (27065) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (27065) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (27065) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (27205) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (27205) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (28075) MAIN: Current RSSI: -87 dBm - Status Wifi: 0 - W (31105) wifi:Haven't to connect to a suitable AP now!
+[0;31mE (31105) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (31105) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (31655) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (31805) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (31805) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (32115) MAIN: Current RSSI: -78 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (32805) wifi:state: auth -> init (0x200)[0m
+[0;32mI (32815) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (32815) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (32835) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (32835) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (33125) MAIN: Current RSSI: -81 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (33835) wifi:state: auth -> init (0x200)[0m
+[0;32mI (33835) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (33835) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (34135) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (34135) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (34135) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (35085) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (35085) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (35145) MAIN: Current RSSI: -82 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (36085) wifi:state: auth -> init (0x200)[0m
+[0;32mI (36085) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (36095) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (36115) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (36115) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (36155) MAIN: Current RSSI: -88 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (37115) wifi:state: auth -> init (0x200)[0m
+[0;32mI (37115) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (37115) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (37165) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (37165) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (37165) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (38175) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (38175) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (38175) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (39185) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (39185) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (39185) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (39535) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (39585) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (39585) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (40195) MAIN: Current RSSI: -84 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (40595) wifi:state: auth -> init (0x200)[0m
+[0;32mI (40595) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (40595) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (40615) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (40615) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (41205) MAIN: Current RSSI: -85 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (41615) wifi:state: auth -> init (0x200)[0m
+[0;32mI (41615) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (41615) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (41835) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (41835) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (42215) MAIN: Current RSSI: -85 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (42835) wifi:state: auth -> init (0x200)[0m
+[0;32mI (42835) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (42835) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (42865) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (42865) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (43225) MAIN: Current RSSI: -82 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (43865) wifi:state: auth -> init (0x200)[0m
+[0;32mI (43865) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (43865) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (44235) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (44235) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (44235) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (45245) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (45245) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (45245) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (46255) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (46255) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (46255) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (46285) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (46345) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (46345) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (47265) MAIN: Current RSSI: -82 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (47345) wifi:state: auth -> init (0x200)[0m
+[0;32mI (47345) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (47345) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (47365) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (47365) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (48275) MAIN: Current RSSI: -81 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (48365) wifi:state: auth -> init (0x200)[0m
+[0;32mI (48365) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (48365) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (49285) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (49285) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (49285) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (49625) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (49625) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (50295) MAIN: Current RSSI: -84 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (50625) wifi:state: auth -> init (0x200)[0m
+[0;32mI (50625) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (50625) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (50645) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (50645) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (51305) MAIN: Current RSSI: -85 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (51645) wifi:state: auth -> init (0x200)[0m
+[0;32mI (51645) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (51645) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (52315) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (52315) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (52315) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (53325) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (53325) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (53325) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (54065) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (54115) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (54125) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (54335) MAIN: Current RSSI: -83 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (55125) wifi:state: auth -> init (0x200)[0m
+[0;32mI (55125) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (55125) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (55145) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (55145) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (55345) MAIN: Current RSSI: -83 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (56145) wifi:state: auth -> init (0x200)[0m
+[0;32mI (56145) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (56145) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (56355) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (56355) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (56355) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (56365) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (56365) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (57365) MAIN: Current RSSI: -82 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (57375) wifi:state: auth -> init (0x200)[0m
+[0;32mI (57375) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (57375) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (57395) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (57395) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (58375) MAIN: Current RSSI: -81 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (58395) wifi:state: auth -> init (0x200)[0m
+[0;32mI (58395) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (58395) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (59385) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (59385) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (59385) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (60395) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (60395) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (60395) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (60815) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (60875) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (60875) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (61405) MAIN: Current RSSI: -81 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (61875) wifi:state: auth -> init (0x200)[0m
+[0;32mI (61875) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (61875) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (61895) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (61895) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (62415) MAIN: Current RSSI: -82 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (62895) wifi:state: auth -> init (0x200)[0m
+[0;32mI (62895) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (62895) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (63425) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (63425) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (63425) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (64145) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (64155) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (64435) MAIN: Current RSSI: -84 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (65155) wifi:state: auth -> init (0x200)[0m
+[0;32mI (65155) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (65155) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (65175) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (65175) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (65445) MAIN: Current RSSI: -86 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (66175) wifi:state: auth -> init (0x200)[0m
+[0;32mI (66175) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (66175) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (66455) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (66455) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (66455) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (67465) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (67465) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (67465) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (68475) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (68475) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (68475) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (68595) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (68655) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (68655) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (69485) MAIN: Current RSSI: -89 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (69655) wifi:state: auth -> init (0x200)[0m
+[0;32mI (69655) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (69655) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (69675) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (69685) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (70495) MAIN: Current RSSI: -87 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (70685) wifi:state: auth -> init (0x200)[0m
+[0;32mI (70685) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (70685) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (70905) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (70905) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (71505) MAIN: Current RSSI: -77 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (71905) wifi:state: auth -> init (0x200)[0m
+[0;32mI (71905) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (71905) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (71925) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (71925) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (72515) MAIN: Current RSSI: -78 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (72925) wifi:state: auth -> init (0x200)[0m
+[0;32mI (72925) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (72925) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (73525) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (73525) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (73525) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (74535) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (74535) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (74535) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (75345) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (75405) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (75405) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (75545) MAIN: Current RSSI: -80 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (76405) wifi:state: auth -> init (0x200)[0m
+[0;32mI (76405) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (76405) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (76425) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (76425) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (76555) MAIN: Current RSSI: -79 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (77425) wifi:state: auth -> init (0x200)[0m
+[0;32mI (77425) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (77435) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (77565) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (77565) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (77565) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (78575) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (78575) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (78575) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (78685) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (78685) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (79585) MAIN: Current RSSI: -83 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (79685) wifi:state: auth -> init (0x200)[0m
+[0;32mI (79685) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (79685) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (79705) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (79705) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (80595) MAIN: Current RSSI: -83 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (80705) wifi:state: auth -> init (0x200)[0m
+[0;32mI (80705) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (80705) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (81605) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (81605) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (81605) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (82615) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (82615) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (82615) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (83135) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (83185) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (83185) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (83625) MAIN: Current RSSI: -84 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (84185) wifi:state: auth -> init (0x200)[0m
+[0;32mI (84185) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (84185) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (84205) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (84205) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (84635) MAIN: Current RSSI: -86 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (85215) wifi:state: auth -> init (0x200)[0m
+[0;32mI (85215) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (85215) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (85435) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (85435) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (85645) MAIN: Current RSSI: -77 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (86435) wifi:state: auth -> init (0x200)[0m
+[0;32mI (86435) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (86435) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (86455) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (86455) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (86655) MAIN: Current RSSI: -80 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (87455) wifi:state: auth -> init (0x200)[0m
+[0;32mI (87455) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (87455) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (87665) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (87665) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (87665) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (88675) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (88675) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (88675) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (89685) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (89685) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (89685) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (89885) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (89935) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (89935) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (90695) MAIN: Current RSSI: -78 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (90935) wifi:state: auth -> init (0x200)[0m
+[0;32mI (90935) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (90935) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (90955) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (90965) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (91705) MAIN: Current RSSI: -78 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (91965) wifi:state: auth -> init (0x200)[0m
+[0;32mI (91965) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (91965) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (92715) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (92715) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (92715) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (93215) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (93215) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (93725) MAIN: Current RSSI: -89 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (94215) wifi:state: auth -> init (0x200)[0m
+[0;32mI (94215) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (94215) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (94235) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (94235) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (94735) MAIN: Current RSSI: -88 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (95235) wifi:state: auth -> init (0x200)[0m
+[0;32mI (95245) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (95245) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (95745) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (95745) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (95745) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;33mW (96755) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (96755) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (96755) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (97665) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (97715) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (97715) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (97765) MAIN: Current RSSI: -89 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (98715) wifi:state: auth -> init (0x200)[0m
+[0;32mI (98725) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (98725) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;33mW (98775) wifi:Haven't to connect to a suitable AP now![0m
+[0;31mE (98775) WifiClient: Failed to get RSSI. Error: ESP_ERR_WIFI_NOT_CONNECT[0m
+[0;32mI (98775) MAIN: Current RSSI: 0 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (98845) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (98845) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (99785) MAIN: Current RSSI: -90 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (99845) wifi:state: auth -> init (0x200)[0m
+[0;32mI (99845) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (99845) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (100065) wifi:new:<1,0>, old:<11,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (100065) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (100795) MAIN: Current RSSI: -78 dBm - Status Wifi: 0 - Status Server: 0[0m
+[0;32mI (101065) wifi:state: auth -> init (0x200)[0m
+[0;32mI (101065) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (101065) WifiClient: Wi-Fi disconnected, trying to reconnect...[0m
+[0;32mI (101085) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (101095) wifi:state: init -> auth (0xb0)[0m
