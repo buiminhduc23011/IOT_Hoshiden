@@ -73,7 +73,14 @@ static char TAG[] = "WSC";
 #define WS_FIN  128
 #define WS_MASK 128
 
-#define directClose() esp_transport_close(m_tr)
+#define directClose()         \
+    do {                      \
+        if (m_tr) {           \
+            esp_transport_close(m_tr);      \
+            esp_transport_destroy(m_tr);    \
+            m_tr = nullptr;                 \
+        }                    \
+    } while (0)
 #define directSend(data, len, timeout_ms) esp_transport_write(m_tr, data, len, timeout_ms)
 #define directRecv(data, len, timeout_ms) esp_transport_read(m_tr, data, len, timeout_ms)
 #define directPollRead(timeout_ms) esp_transport_poll_read(m_tr, timeout_ms)
@@ -189,6 +196,17 @@ int WebSocketClient::wsConnect(int timeout_ms)
 	int status, i, j, len, r, checked = 0;
 	char* ch;
 	m_connected = false;
+	if (m_tr == nullptr)
+	{
+		if (m_ssl) 
+		{
+			m_tr = esp_transport_ssl_init();
+		} else 
+		{
+			m_tr = esp_transport_tcp_init();
+		}
+		esp_transport_set_default_port(m_tr, m_port);
+	}
 	if (esp_transport_connect(m_tr, m_host, m_port, timeout_ms) < 0) {
 		cl_ws_error("Khong th ket noi den may chu %s:%d", m_host, m_port);
 		return 0;

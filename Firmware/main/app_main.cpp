@@ -31,6 +31,7 @@
 #include "main.h"
 #include "eeprom.h"
 #include "IO.h"
+#include "IEC_Timer.h"
 #include "TCP.h"
 
 #define STRINGIFY(x) #x
@@ -43,6 +44,9 @@ IOT_Data_t iot_Data;
 Eeprom envs;
 char *text_rev;
 
+TON_TIME T_FAKE_DATA;
+TON_TIME T_Cycle;
+
 #define EX_UART_NUM UART_NUM_0
 #define PATTERN_CHR_NUM (3) /*!< Set the number of consecutive and identical characters received by receiver which defines a UART pattern*/
 #define BUF_SIZE (1024)
@@ -52,6 +56,7 @@ char **buff_uart;
 uint16_t T_Retry_Wifi;
 uint16_t T_Dis_Server;
 uint16_t P_Connect;
+uint16_t Count_SendPCB;
 char **
 split(char *str, char delimiter, int *count)
 {
@@ -157,7 +162,7 @@ void ReadConfig(IOT_Data_t *_iotConfig)
     _iotConfig->IpSev = (char *)malloc(50 * sizeof(char));
     if (envs.readString(NVS_KEY_IP_SERVER, _iotConfig->IpSev) == 0)
     {
-        _iotConfig->IpSev = "192.168.1.19";
+        _iotConfig->IpSev = "192.168.102.9";
     }
     if (envs.readUint16(NVS_KEY_PORT_SERVER, &_iotConfig->port) == 0)
     {
@@ -252,6 +257,12 @@ void GetState()
         SetStateXL(State_XL);
     }
 }
+
+void InitTimer()
+{
+    T_FAKE_DATA.PT = 100;
+    T_Cycle.PT = 1000;
+}
 //---------------------------------------------------------------------------------
 extern "C" void app_main()
 {
@@ -332,90 +343,134 @@ extern "C" void app_main()
     sioapi.begin(&iot_Data);
     sioapi.initCbFunc();
     sioapi.start();
+    InitTimer();
     vTaskDelay(2000 / portTICK_PERIOD_MS);
 }
-void main_task(void)
+void Program()
 {
-   // ESP_LOGI(TAG, "Current RSSI: %d dBm - Status Wifi: %d - Status Server: %d", GetRssi(), iot_Data.WifiStatus, iot_Data.ServerStatus);
-    if (FLAG_GetFlag(FLAG_UART_EVENT_REV_DATA))
+    // if (iot_Data.ServerStatus && T_FAKE_DATA.Q)
+    // {
+    //     sioapi.SendPCB("Hello Server");
+    // }
+    if (T_Cycle.Q)
     {
-        FLAG_ClearFlag(FLAG_UART_EVENT_REV_DATA);
-        if (strcmp(buff_uart[0], "Config") == 0)
+       // if (iot_Data.WifiStatus == true)
+           // ESP_LOGI(TAG, "Current RSSI: %d dBm - Status Wifi: %d - Status Server: %d", GetRssi(), iot_Data.WifiStatus, iot_Data.ServerStatus);
+        if (FLAG_GetFlag(FLAG_UART_EVENT_REV_DATA))
         {
-            SetConfig();
+            FLAG_ClearFlag(FLAG_UART_EVENT_REV_DATA);
+            if (strcmp(buff_uart[0], "Config") == 0)
+            {
+                SetConfig();
+                vTaskDelay(1000 / portTICK_PERIOD_MS);
+                esp_restart();
+            }
+            if (strcmp(buff_uart[0], "get") == 0)
+            {
+                ESP_LOGI("GET_CONFIG", "SSID : (%s)", iot_Data.Ssid);
+                ESP_LOGI("GET_CONFIG", "PASS : (%s)", iot_Data.Pass);
+                ESP_LOGI("GET_CONFIG", "IP SV: (%s)", iot_Data.IpSev);
+                ESP_LOGI("GET_CONFIG", "PORT : (%d)", iot_Data.port);
+                ESP_LOGI("GET_CONFIG", "HOSTNAME : (%s)", iot_Data.HostName);
+            }
+        }
+        if (FLAG_GetFlag(FLAG_SIO_EVENT_CONFIG))
+        {
+            FLAG_ClearFlag(FLAG_SIO_EVENT_CONFIG);
+            envs.writeString(NVS_KEY_WIFI_SSID, iot_Data.Ssid);
+            envs.writeString(NVS_KEY_WIFI_PASS, iot_Data.Pass);
+            envs.writeString(NVS_KEY_IP_SERVER, iot_Data.IpSev);
+            envs.writeUint16(NVS_KEY_PORT_SERVER, iot_Data.port);
+            envs.writeString(NVS_KEY_HOST_NAME, iot_Data.HostName);
             vTaskDelay(1000 / portTICK_PERIOD_MS);
             esp_restart();
         }
-        if (strcmp(buff_uart[0], "get") == 0)
+        if (iot_Data.ServerStatus)
         {
-            ESP_LOGI("GET_CONFIG", "SSID : (%s)", iot_Data.Ssid);
-            ESP_LOGI("GET_CONFIG", "PASS : (%s)", iot_Data.Pass);
-            ESP_LOGI("GET_CONFIG", "IP SV: (%s)", iot_Data.IpSev);
-            ESP_LOGI("GET_CONFIG", "PORT : (%d)", iot_Data.port);
-            ESP_LOGI("GET_CONFIG", "HOSTNAME : (%s)", iot_Data.HostName);
+            if (P_Connect < 1000)
+            {
+                P_Connect++;
+            }
+            if (P_Connect == 1)
+            {
+                ClearState();
+            }
+            if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_PCB))
+            {
+                if (Count_SendPCB < 3)
+                {
+                    
+                    sioapi.SendPCB(GetQRcode());
+                    Count_SendPCB++;
+                    vTaskDelay(1000 / portTICK_PERIOD_MS);
+                }
+                else
+                {
+                    Count_SendPCB = 0;
+                    FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_PCB);
+                    SetError(10, 1); // Tự đánh mất kết nối do Server k phản hồi
+                }
+            }
+            else
+            {
+                Count_SendPCB = 0;
+            }
+            if (FLAG_GetFlag(FLAG_SIO_EVENT_CALLBACK_UPDATE_PCB))
+            {
+                ESP_LOGI(TAG, "Sever Call Back Event Update PCB");
+                FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_PCB);
+                FLAG_ClearFlag(FLAG_SIO_EVENT_CALLBACK_UPDATE_PCB);
+            }
+            if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB))
+            {
+                FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB);
+                sioapi.SendPCB("disconnect");
+            }
+            T_Dis_Server = 0;
+            if (GetError() == 20)
+                SetError(0, true);
+        }
+        else if (iot_Data.WifiStatus == true && iot_Data.ServerStatus == false)
+        {
+            P_Connect = 0;
+            if (T_Dis_Server < 1000)
+            {
+                T_Dis_Server++;
+            }
+            if (T_Dis_Server == 15)
+            {
+                SetError(20, true);
+                // Cmt nguyên đoạn này lại
+                // SaveState();
+                // ESP_LOGI(TAG, "System will restart in 1 seconds...", i);
+                // vTaskDelay(1000 / portTICK_PERIOD_MS);
+                // esp_restart();
+            }
+        }
+        if (iot_Data.ServerStatus == true && iot_Data.WifiStatus == true && ConnectCam() == true)
+        {
+            SetWarring(0);
+        }
+        else if (iot_Data.WifiStatus == false)
+        {
+            SetWarring(10);
+        }
+        else if (iot_Data.ServerStatus == false)
+        {
+            SetWarring(5);
+        }
+        else if (ConnectCam() == false)
+        {
+            SetWarring(2);
         }
     }
-    if (FLAG_GetFlag(FLAG_SIO_EVENT_CONFIG))
-    {
-        FLAG_ClearFlag(FLAG_SIO_EVENT_CONFIG);
-        envs.writeString(NVS_KEY_WIFI_SSID, iot_Data.Ssid);
-        envs.writeString(NVS_KEY_WIFI_PASS, iot_Data.Pass);
-        envs.writeString(NVS_KEY_IP_SERVER, iot_Data.IpSev);
-        envs.writeUint16(NVS_KEY_PORT_SERVER, iot_Data.port);
-        envs.writeString(NVS_KEY_HOST_NAME, iot_Data.HostName);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        esp_restart();
-    }
-    if (iot_Data.ServerStatus)
-    {
-        if (P_Connect < 1000)
-        {
-            P_Connect++;
-        }
-        if (P_Connect == 1)
-        {
-            ClearState();
-        }
-        if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_PCB))
-        {
-            FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_PCB);
-            sioapi.SendPCB(GetQRcode());
-        }
-        if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB))
-        {
-            FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_ERROR_PCB);
-            sioapi.SendPCB("disconnect");
-        }
-        T_Dis_Server = 0;
-        if (GetError() == 20)
-            SetError(0, true);
-    }
-    else
-    {
-        P_Connect = 0;
-        if (T_Dis_Server < 1000)
-        {
-            T_Dis_Server++;
-        }
-        if (T_Dis_Server == 15)
-        {
-            SetError(20, true);
-        }
-    }
-    if (iot_Data.ServerStatus == true && iot_Data.WifiStatus == true && ConnectCam() == true)
-    {
-        SetWarring(0);
-    }
-    else if (iot_Data.WifiStatus == false)
-    {
-        SetWarring(10);
-    }
-    else if (iot_Data.ServerStatus == false)
-    {
-        SetWarring(5);
-    }
-    else if (ConnectCam() == false)
-    {
-        SetWarring(2);
-    }
+}
+void main_task(void)
+{
+
+    TON(&T_FAKE_DATA);
+    T_FAKE_DATA.IN = !T_FAKE_DATA.Q;
+    TON(&T_Cycle);
+    T_Cycle.IN = !T_Cycle.Q;
+    Program();
 }

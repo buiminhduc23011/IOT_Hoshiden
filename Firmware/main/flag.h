@@ -51,6 +51,7 @@ extern "C"
         FLAG_SIO_EVENT_UPDATE_STATUS = 0x0010,
         FLAG_SIO_EVENT_UPDATE_PCB = 0x0020,
         FLAG_SIO_EVENT_UPDATE_ERROR_PCB = 0x0040,
+        FLAG_SIO_EVENT_CALLBACK_UPDATE_PCB = 0x0080,
         FLAG_SIO_EVENT_RETRY_CONNECTCAMERA = 0x0100
     };
     /*==================================================================================================

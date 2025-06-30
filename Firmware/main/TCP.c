@@ -108,6 +108,7 @@ void tcp_server_task(void *pvParameter)
 
         while (1)
         {
+            if(IsConnectCam == false) break;
             int len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, 0);
             if (len < 0)
             {

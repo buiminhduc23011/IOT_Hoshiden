@@ -80,8 +80,8 @@ void SocketIoClientAPI::initCbFunc()
             iot_Data->ServerStatus = false;
         } });
 
-    // sio->seertEventFuncCallBack([](SocketIoClient *ws, uint32_t id)
-    //                             { FLAG_SetFlag(FLAG_SIO_CALLBACK_UPDATE_COUNT); });
+    sio->seertEventFuncCallBack([](SocketIoClient *ws, uint32_t id)
+                                { FLAG_SetFlag(FLAG_SIO_EVENT_CALLBACK_UPDATE_PCB); });
 
     sio->setCB([](SocketIoClient *c, const char *msg, int len, int type)
                {
@@ -101,59 +101,67 @@ void SocketIoClientAPI::initCbFunc()
         cJSON_Delete(data_receive);
         FLAG_SetFlag(FLAG_SIO_EVENT_UPDATE_FIMWARE); });
 
-    sio->on("error-pcb", [](SocketIoClient *c, char *msg)
-            {
-                api_sio_info("Event Receive: error-pcb");
-                cJSON *data_receive = cJSON_Parse(msg);
+    // sio->on("error-pcb", [](SocketIoClient *c, char *msg)
+    //         {
+    //             api_sio_info("Event Receive: error-pcb");
+    //             cJSON *data_receive = cJSON_Parse(msg);
                 
-                // Initialize variables with default values
-                uint16_t _errorcode = 0; // Default to 0
-                bool _flicker = false;   // Default to false
+    //             // Initialize variables with default values
+    //             uint16_t _errorcode = 0; // Default to 0
+    //             bool _flicker = false;   // Default to false
 
-                if (cJSON_GetObjectItem(data_receive, "errorCode"))
-                {
-                    _errorcode = cJSON_GetObjectItem(data_receive, "errorCode")->valueint;
-                }
-                if (cJSON_GetObjectItem(data_receive, "flicker"))
-                {
-                    _flicker = cJSON_GetObjectItem(data_receive, "flicker")->valueint;
-                }
-                SetError(_errorcode, _flicker); });
+    //             if (cJSON_GetObjectItem(data_receive, "errorCode"))
+    //             {
+    //                 _errorcode = cJSON_GetObjectItem(data_receive, "errorCode")->valueint;
+    //             }
+    //             if (cJSON_GetObjectItem(data_receive, "flicker"))
+    //             {
+    //                 _flicker = cJSON_GetObjectItem(data_receive, "flicker")->valueint;
+    //             }
+    //              api_sio_info("Error Id: %d", _errorcode);
+    //             SetError(_errorcode, _flicker); 
+    //              cJSON_Delete(data_receive); });
 
-    sio->on("off-buzz", [](SocketIoClient *c, char *msg)
-            {
-                api_sio_info("Event Receive: off-buzz");
-                cJSON *data_receive = cJSON_Parse(msg);
-                if (cJSON_GetObjectItem(data_receive, "status"))
-                {
-                    bool status = cJSON_GetObjectItem(data_receive, "status")->valueint;
-                    ESP_LOGI(TAG, "Status off-buzz: %d", status );
-                   SetBuzz(status);
-                } });
-    sio->on("success-pcb", [](SocketIoClient *c, char *msg)
-            {
-                api_sio_info("Event Receive: success-pcb");
-                cJSON *data_receive = cJSON_Parse(msg);
-                if (cJSON_GetObjectItem(data_receive, "status"))
-                {
-                    bool status = cJSON_GetObjectItem(data_receive, "status")->valueint;
-                    if(status)
-                    {
-                         FLAG_SetFlag(FLAG_SIO_EVENT_UPDATE_STATUS_PCB);
-                    }
-                } });
-    sio->on("open-pcb", [](SocketIoClient *c, char *msg)
-            {
-                api_sio_info("Event Receive: open-pcb");
-                cJSON *data_receive = cJSON_Parse(msg);
-                if (cJSON_GetObjectItem(data_receive, "status"))
-                {
-                    bool status = cJSON_GetObjectItem(data_receive, "status")->valueint;
-                    if(status)
-                    {
-                         FLAG_SetFlag(FLAG_SIO_EVENT_UPDATE_STATUS_PCB);
-                    }
-                } });
+    // sio->on("off-buzz", [](SocketIoClient *c, char *msg)
+    //         {
+    //             api_sio_info("Event Receive: off-buzz");
+    //             cJSON *data_receive = cJSON_Parse(msg);
+    //             if (cJSON_GetObjectItem(data_receive, "status"))
+    //             {
+    //                 bool status = cJSON_GetObjectItem(data_receive, "status")->valueint;
+    //                 ESP_LOGI(TAG, "Status off-buzz: %d", status );
+    //                SetBuzz(status);
+                  
+    //             } 
+    //               cJSON_Delete(data_receive); });
+    // sio->on("success-pcb", [](SocketIoClient *c, char *msg)
+    //         {
+    //             api_sio_info("Event Receive: success-pcb");
+    //             cJSON *data_receive = cJSON_Parse(msg);
+    //             if (cJSON_GetObjectItem(data_receive, "status"))
+    //             {
+    //                 bool status = cJSON_GetObjectItem(data_receive, "status")->valueint;
+    //                 if(status)
+    //                 {
+    //                      FLAG_SetFlag(FLAG_SIO_EVENT_UPDATE_STATUS_PCB);
+    //                 }
+    //                  api_sio_info("Server send status Cyl: %d", status);
+    //             }
+    //             cJSON_Delete(data_receive); });
+    // sio->on("open-pcb", [](SocketIoClient *c, char *msg)
+    //         {
+    //             api_sio_info("Event Receive: open-pcb");
+    //             cJSON *data_receive = cJSON_Parse(msg);
+    //             if (cJSON_GetObjectItem(data_receive, "status"))
+    //             {
+    //                 bool status = cJSON_GetObjectItem(data_receive, "status")->valueint;
+    //                 if(status)
+    //                 {
+    //                      FLAG_SetFlag(FLAG_SIO_EVENT_UPDATE_STATUS_PCB);
+    //                 }
+    //                 api_sio_info("Server send status Cyl: %d", status);
+    //             } 
+    //             cJSON_Delete(data_receive); });
 
     sio->on("config-iot", [](SocketIoClient *c, char *msg)
             {
@@ -249,7 +257,7 @@ void SocketIoClientAPI::SendPCB(const char *QR)
     cJSON_AddStringToObject(qr_code, "data", QR);
     char *data = cJSON_Print(qr_code);
     SIOClientSendEvent("declare-Pcb-IOT", data, 1);
-    ESP_LOGI(TAG, "QR_Code: %s", QR);
+    ESP_LOGI(TAG, "QR_Code: %s", (QR != NULL) ? QR : " (null or empty)");
     cJSON_Delete(qr_code);
     cJSON_free(data);
 }

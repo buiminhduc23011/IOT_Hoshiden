@@ -30,6 +30,7 @@ Modification
 #include "flag.h"
 #include "main.h"
 #include "TCP.h"
+#include "IEC_Timer.h"
 
 /*==================================================================================================
 *                                     FILE VERSION CHECKS
@@ -74,6 +75,8 @@ bool CheckCam = false;
 uint16_t TimeoutCamera = 0;
 uint16_t State_XL = 0;
 
+TON_TIME T_LOG;
+
 /*==================================================================================================
 *                                      GLOBAL CONSTANTS
 ==================================================================================================*/
@@ -117,6 +120,7 @@ void IO_Init()
     gpio_set_level(BUZZ, LOW);
     gpio_set_level(TRIGGER_CAMERA, LOW);
     IORun();
+    T_LOG.PT = 1000;
 }
 void SetError(uint16_t _E, bool _flicker)
 {
@@ -224,6 +228,8 @@ void io_task(void *pvParameter)
 {
     while (1)
     {
+        TON(&T_LOG);
+        T_LOG.IN = !T_LOG.Q;
         // Trigger
         if (!gpio_get_level(SS_DETECT))
         {
@@ -249,7 +255,7 @@ void io_task(void *pvParameter)
             {
                 T_OFF_Trigger++;
             }
-            if (T_OFF_Trigger > 200) // Timeout Trigger, 200 là giữ trigger trong 2s kể từ khi mất cảm biến
+            if (T_OFF_Trigger > 50) // Timeout Trigger, 200 là giữ trigger trong 2s kể từ khi mất cảm biến
             {
                 State_Trigger = 0;
             }
@@ -276,7 +282,10 @@ void io_task(void *pvParameter)
         // Cyl
         if (FLAG_GetFlag(FLAG_SIO_EVENT_UPDATE_STATUS_PCB))
         {
+
             OpenXL = true;
+            ESP_LOGI(TAG, "Set trạng thái mở Cyl nè");
+            Flag_SS_DETECT_OFF = 0;
             FLAG_ClearFlag(FLAG_SIO_EVENT_UPDATE_STATUS_PCB);
         }
         if (OpenXL)
@@ -290,11 +299,12 @@ void io_task(void *pvParameter)
                     Flag_SS_DETECT_OFF++;
                 }
             }
-            if (Flag_SS_DETECT_OFF > 200)
+            if (Flag_SS_DETECT_OFF > 50)
             {
                 OpenXL = false;
             }
             Flag_SS_DETECT_ON = 0;
+            // ESP_LOGI(TAG,"Mở XL");
         }
         if (!gpio_get_level(SS_DETECT) && OpenXL == false)
         {
@@ -309,9 +319,14 @@ void io_task(void *pvParameter)
                     CheckCam = true;
                 }
                 Flag_SS_DETECT_OFF = 0;
+                // ESP_LOGI(TAG,"Đóng XL");
             }
         }
         gpio_set_level(XL01, State_XL);
+        if (T_LOG.Q)
+        {
+            ESP_LOGI(TAG, "State XL %d", State_XL);
+        }
         // Check Timeout Camera
         if (CheckCam)
         {
@@ -338,27 +353,7 @@ void io_task(void *pvParameter)
         {
             TimeoutCamera = 0;
         }
-
-        Flag_Logi++;
-        if (Flag_Logi > 100)
-        {
-            // if (OpenXL)
-            // {
-            //     ESP_LOGI(TAG, "OpenXL True ;Flag_SS_DETECT_OFF: %d", Flag_SS_DETECT_OFF);
-            // }
-            // else
-            // {
-            //     ESP_LOGI(TAG, "OpenXL False ;Flag_SS_DETECT_OFF: %d", Flag_SS_DETECT_OFF);
-            // }
-            // if (OFF_BUZZ)
-            //     ESP_LOGI(TAG, "OFF Buzz");
-            // else
-            //     ESP_LOGI(TAG, "ON Buzz");
-            // ESP_LOGI(TAG, "E: %d, W: %d", E, W);
-            main_task();
-
-            Flag_Logi = 0;
-        }
+        main_task();
         vTaskDelay(time_sample / portTICK_PERIOD_MS);
     }
 }

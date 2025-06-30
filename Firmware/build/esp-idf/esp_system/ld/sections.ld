@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: C:\Users\Ducne\Documents\GitHub\IOT_Hoshiden\Firmware\build\esp-idf\esp_system\ld\sections.ld.in */
+/* Generated from: C:\Users\ducbu\Documents\GitHub\IOT_Hoshiden\Firmware\build\esp-idf\esp_system\ld\sections.ld.in */
 
 /*
 

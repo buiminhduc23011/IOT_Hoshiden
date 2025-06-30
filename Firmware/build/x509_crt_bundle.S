@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/Firmware/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from C:/Users/ducbu/Documents/GitHub/IOT_Hoshiden/Firmware/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

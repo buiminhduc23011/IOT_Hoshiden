@@ -5,6 +5,7 @@ set(COMPONENT_SRCS
 	"ota.c"
 	"TCP.c"
 	"IO.c"
+	"IEC_Timer.c"
 	"app_main.cpp"
 	)
 

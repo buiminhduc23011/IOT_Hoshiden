@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/Firmware/component/ETH_W5500
+# Install script for directory: C:/Users/ducbu/Documents/GitHub/IOT_Hoshiden/Firmware/component/ETH_W5500
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/IOT_HOSHIDEN_20250114_113600")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/IOT_HOSHIDEN_20250622_095731")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.16)
 
 if("${CONFIG}" STREQUAL "" OR "${CONFIG}" STREQUAL "")
   file(REMOVE_RECURSE
-  "IOT_HOSHIDEN_20250114_113600.bin"
-  "IOT_HOSHIDEN_20250114_113600.map"
+  "IOT_HOSHIDEN_20250622_095731.bin"
+  "IOT_HOSHIDEN_20250622_095731.map"
   "bootloader\\bootloader.bin"
   "bootloader\\bootloader.elf"
   "bootloader\\bootloader.map"

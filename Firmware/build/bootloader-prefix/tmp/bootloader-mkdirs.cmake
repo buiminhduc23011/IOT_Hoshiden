@@ -10,18 +10,18 @@ if(NOT EXISTS "C:/Espressif/frameworks/esp-idf-v5.3.2/components/bootloader/subp
   file(MAKE_DIRECTORY "C:/Espressif/frameworks/esp-idf-v5.3.2/components/bootloader/subproject")
 endif()
 file(MAKE_DIRECTORY
-  "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader"
-  "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix"
-  "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/tmp"
-  "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/src/bootloader-stamp"
-  "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/src"
-  "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/ducbu/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader"
+  "C:/Users/ducbu/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix"
+  "C:/Users/ducbu/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/tmp"
+  "C:/Users/ducbu/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/ducbu/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/src"
+  "C:/Users/ducbu/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Users/ducbu/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/Users/Ducne/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Users/ducbu/Documents/GitHub/IOT_Hoshiden/Firmware/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()
